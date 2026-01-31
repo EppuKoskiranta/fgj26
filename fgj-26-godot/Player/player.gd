@@ -11,7 +11,7 @@ var turn_speed_deg_per_sec: float = 0.0
 var look_speed_deg_per_sec: float = 0.0
 var look_angle_deg: float = 0.0
 
-var item_in_hand : Node3D = null
+var item_in_hand : Ingredient = null
 
 func _ready() -> void:
 	Def.subscribe_to_movement(self._move_player, self._turn_player, self._look_up_down)
@@ -84,3 +84,11 @@ func _on_item_picked_up(object : Node) -> void:
 	item_in_hand = item_instance
 
 	$Hand.add_child(item_in_hand)
+
+func get_item_in_hand() -> Ingredient:
+	return item_in_hand
+
+func remove_item_in_hand() -> void:
+	if item_in_hand != null:
+		item_in_hand.get_parent().remove_child(item_in_hand)
+		item_in_hand = null	

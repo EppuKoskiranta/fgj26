@@ -111,5 +111,8 @@ func start_spreading_lotion() -> void:
 	
 func stop_spreading_lotion() -> void:
 	lotion_application = false
+
+func get_player() -> Node:
+	return get_tree().get_root().get_node("Root/Player")
 	
 	

@@ -47,7 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif event.is_action_released("interact"):
 					Def.stop_spreading_lotion()
 			_:
-				Def.report_interact(null) # Only report the event
+				if event.is_action_pressed("interact"):
+					Def.report_interact(null) # Only report the event
 
 	elif event.is_action_released("open_menu"):
 		if Def.INPUT_MAPPING_START != Def.game_input_state:

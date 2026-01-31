@@ -19,4 +19,4 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Hand" type="Node3D" parent="." unique_id=1654573906]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32204023, 0.50710887, -0.8722612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32204023, 1.0117073, -0.7549405)
