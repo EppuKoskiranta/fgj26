@@ -18,6 +18,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_m5b23")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=920632872]
 attenuation_model = 2
 autoplay = true
+panning_strength = 2.43
 
 [node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("2_wtk5h")]
 dimesions = Vector3(5, 5, 5)
