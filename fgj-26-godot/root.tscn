@@ -34,6 +34,9 @@ unique_name_in_owner = true
 [node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera") instance=ExtResource("6_l8v81")]
 player_camera = NodePath("../PlayerCamera")
 
+[node name="CustomerLogic" parent="GameManager" index="0" unique_id=1030538246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.3570952)
+
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
 
 [editable path="GameManager"]

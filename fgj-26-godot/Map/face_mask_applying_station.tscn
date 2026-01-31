@@ -24,7 +24,7 @@ face_image = ExtResource("3_r3333")
 docking_station = NodePath("CameraDockingStation")
 
 [node name="Bed" type="MeshInstance3D" parent="." unique_id=12120602]
-transform = Transform3D(1.1981789, 0, 0, 0, 9.851159, 0, 0, 0, 1.6374707, 0, 0.5040246, 2.07621)
+transform = Transform3D(0.798, 0, 0, 0, 6.562, 0, 0, 0, 1.09, 0.08287454, 0.35945928, 1.0889404)
 mesh = ExtResource("1_3or3y")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Bed" unique_id=455814590]
@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999997, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_1yhhs")
 
 [node name="Table" type="MeshInstance3D" parent="." unique_id=1181790091]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.92191374, 1.4109795, 0.28328538)
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, -0.92191374, 1.6856983, 0.28328538)
 mesh = ExtResource("3_mrlpg")
 
 [node name="LotionPosition" type="Node3D" parent="Table" unique_id=1014050688]
@@ -54,8 +54,8 @@ shape = SubResource("BoxShape3D_el5kr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -1.0774528, -0.76619816)
 
 [node name="Interactable" parent="." unique_id=290948450 instance=ExtResource("7_kkd5s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8098924, 0.5083053, 0.19996613)
-dimesions = Vector3(1.5, 1, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.390362, 0.5083053, -0.10362142)
+dimesions = Vector3(1.4, 1, 1.8)
 
 [node name="CameraDockingStation" type="Node3D" parent="." unique_id=672156104]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.2299385, 2.967655, 0)

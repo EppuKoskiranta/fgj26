@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cd1asr7x8yv00"]
+
+[ext_resource type="Script" uid="uid://bj838bnjrt3pm" path="res://Objects/customer_logic.gd" id="1_poerd"]
+[ext_resource type="PackedScene" uid="uid://dkxydki4hpsmo" path="res://Prefabs/customer.tscn" id="2_tcwjl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcwjl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tcwjl"]
+radius = 0.56235075
+
+[node name="CustomerLogic" type="CharacterBody3D" unique_id=1030538246]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_poerd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1331124898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_tcwjl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1986274750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4471877, 0)
+shape = SubResource("SphereShape3D_tcwjl")
+
+[node name="CustomerVisuals" parent="." unique_id=166304056 instance=ExtResource("2_tcwjl")]
+transform = Transform3D(0.435, 0, 0, 0, 0.435, 0, 0, 0, 0.435, 0, 0, 0)

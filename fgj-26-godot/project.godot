@@ -66,6 +66,7 @@ back={
 
 3d_physics/layer_1="Obstacles"
 3d_physics/layer_2="Player"
+3d_physics/layer_3="Customer"
 
 [physics]
 
