@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bj838bnjrt3pm" path="res://Objects/customer_logic.gd" id="1_poerd"]
 [ext_resource type="PackedScene" uid="uid://dkxydki4hpsmo" path="res://Prefabs/customer.tscn" id="2_tcwjl"]
+[ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="3_avjha"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcwjl"]
 
@@ -23,3 +24,32 @@ shape = SubResource("SphereShape3D_tcwjl")
 
 [node name="CustomerVisuals" parent="." unique_id=166304056 instance=ExtResource("2_tcwjl")]
 transform = Transform3D(0.435, 0, 0, 0, 0.435, 0, 0, 0, 0.435, 0, 0, 0)
+
+[node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("3_avjha")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730731, 0.8631016)
+dimesions = Vector3(1, 1, 2)
+
+[node name="Points_To_Counter" type="Node" parent="." unique_id=238545293]
+
+[node name="Node3D" type="Node3D" parent="Points_To_Counter" unique_id=1105408772]
+
+[node name="Node3D2" type="Node3D" parent="Points_To_Counter" unique_id=1321002862]
+
+[node name="Node3D3" type="Node3D" parent="Points_To_Counter" unique_id=1100396366]
+
+[node name="Points_To_Bed" type="Node" parent="." unique_id=2132140940]
+
+[node name="Node3D" type="Node3D" parent="Points_To_Bed" unique_id=1093962224]
+
+[node name="Node3D2" type="Node3D" parent="Points_To_Bed" unique_id=910455233]
+
+[node name="Node3D3" type="Node3D" parent="Points_To_Bed" unique_id=2002731249]
+
+[node name="Points_To_Leave" type="Node" parent="." unique_id=1245551633]
+
+[node name="Node3D" type="Node3D" parent="Points_To_Leave" unique_id=165486250]
+
+[node name="Node3D2" type="Node3D" parent="Points_To_Leave" unique_id=1291007933]
+
+[node name="Node3D3" type="Node3D" parent="Points_To_Leave" unique_id=1942493742]

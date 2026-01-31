@@ -103,5 +103,3 @@ func start_spreading_lotion() -> void:
 	
 func stop_spreading_lotion() -> void:
 	lotion_application = false
-	
-	

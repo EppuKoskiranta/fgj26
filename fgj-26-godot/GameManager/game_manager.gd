@@ -13,8 +13,6 @@ func _ready() -> void:
 	Def.subscribe_to_going_back(self._back_from_station)
 	Def.subscribe_to_input_mapping_changed(self._input_mapping_changed)
 	Def.subscribe_to_interaction(self._interacted_with)
-	# TODO: only when we start from main menu
-	Def.set_input_mapping(Def.INPUT_MAPPING_FPS_MOVEMENT)
 	
 func _back_from_station() -> void:
 	Def.set_input_mapping(Def.INPUT_MAPPING_FPS_MOVEMENT)

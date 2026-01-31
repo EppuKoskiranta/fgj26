@@ -2,15 +2,20 @@
 
 [ext_resource type="Script" uid="uid://de3e2jlrmoons" path="res://main.gd" id="1_pq8q7"]
 [ext_resource type="PackedScene" uid="uid://56psdcopd18u" path="res://Map/placeholder_map.tscn" id="2_pyidc"]
-[ext_resource type="PackedScene" path="res://Map/face_mask_applying_station.tscn" id="3_bf3um"]
+[ext_resource type="PackedScene" uid="uid://bv6b7owa885y2" path="res://Map/face_mask_applying_station.tscn" id="3_bf3um"]
 [ext_resource type="PackedScene" uid="uid://ss4v7nnfm6kn" path="res://Player/player.tscn" id="3_vvh5c"]
 [ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bpbdhbtgcho4o" path="res://GameManager/game_manager.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://b6srbcargtiaf" path="res://UI/interact_promt.tscn" id="7_vyht1"]
+[ext_resource type="PackedScene" uid="uid://bqpx333wdum5y" path="res://UI/start_menu.tscn" id="9_huihk"]
 
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
+
+[node name="StartMenu" parent="." unique_id=1240488457 instance=ExtResource("9_huihk")]
+visible = false
+size_flags_horizontal = 0
 
 [node name="Map" type="Node" parent="." unique_id=761278262]
 
@@ -34,9 +39,17 @@ unique_name_in_owner = true
 [node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera") instance=ExtResource("6_l8v81")]
 player_camera = NodePath("../PlayerCamera")
 
-[node name="CustomerLogic" parent="GameManager" index="0" unique_id=1030538246]
+[node name="CustomerLogic" parent="GameManager" index="0" unique_id=1030538246 node_paths=PackedStringArray("to_counter_curve", "to_bed_curve", "leave_curve")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.3570952)
+to_counter_curve = NodePath("")
+to_bed_curve = NodePath("")
+leave_curve = NodePath("")
 
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
+
+[node name="Curves" type="Node" parent="." unique_id=1362956385]
+
+[connection signal="quit_game" from="StartMenu" to="." method="_on_start_menu_quit_game"]
+[connection signal="start_game" from="StartMenu" to="." method="_on_start_menu_start_game"]
 
 [editable path="GameManager"]
