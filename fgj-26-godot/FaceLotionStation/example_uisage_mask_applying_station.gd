@@ -11,6 +11,8 @@ var timer : float = 0.0
 
 func _ready() -> void:
 	assert(applier)
+	applier.add_lotion(100, Color.GREEN)
+	applier.add_lotion_to_hand()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	pass
