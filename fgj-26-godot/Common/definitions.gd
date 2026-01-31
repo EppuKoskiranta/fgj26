@@ -1,16 +1,18 @@
 extends Node
 
 # Add global signals here
-signal input_mapping_changed(new_state : GameInputState)
+signal input_mapping_changed(new_state : GameInputState, previous_state : GameInputState)
 signal move_player(move_dir : Vector2)
 signal turn_player(turn_left_deg_per_sec : float)
 signal look_up_down(pitch_angle_deg_per_sec : float)
 signal interact()
+signal interact_with(object : Node)
 signal menu_toggled()
 signal back_to_previous()
 
 # Add global enums here
-enum GameInputState {MENU, FPS_MOVEMENT, CONVERSATION, LOTION_MIXING, MASK_LOTION_APPLY}
+enum GameInputState {START, MENU, FPS_MOVEMENT, CONVERSATION, LOTION_MIXING, MASK_LOTION_APPLY}
+const INPUT_MAPPING_START : GameInputState = GameInputState.START
 const INPUT_MAPPING_MENU : GameInputState = GameInputState.MENU
 const INPUT_MAPPING_FPS_MOVEMENT : GameInputState = GameInputState.FPS_MOVEMENT
 const INPUT_MAPPING_CONVERSATION : GameInputState = GameInputState.CONVERSATION
@@ -18,7 +20,7 @@ const INPUT_MAPPING_LOTION_MIXING : GameInputState = GameInputState.LOTION_MIXIN
 const INPUT_MAPPING_MASK_LOTION_APPLY : GameInputState = GameInputState.MASK_LOTION_APPLY
 
 # Add global constants and parameters here
-var game_input_state : GameInputState = GameInputState.FPS_MOVEMENT
+var game_input_state : GameInputState = INPUT_MAPPING_START
 
 func _ready() -> void:
 	set_process(false)
@@ -32,8 +34,11 @@ func subscribe_to_movement(move_callback : Callable, turn_callback : Callable, l
 func subscribe_to_input_mapping_changed(callback : Callable) -> void:
 	input_mapping_changed.connect(callback)
 	
-func subscribe_to_interaction(callback : Callable) -> void:
-	interact.connect(callback)
+func subscribe_to_interaction(callback : Callable, event_only : bool = false) -> void:
+	if event_only:
+		interact.connect(callback)
+	else:
+		interact_with.connect(callback)
 	
 func subscribe_to_menu_toggle(callback : Callable) -> void:
 	menu_toggled.connect(callback)
@@ -42,8 +47,9 @@ func subscribe_to_going_back(callback : Callable) -> void:
 	back_to_previous.connect(callback)
 
 func set_input_mapping(new_mapping : GameInputState) -> void:
+	var previous : GameInputState = game_input_state
 	game_input_state = new_mapping
-	emit_signal("input_mapping_changed", new_mapping)
+	emit_signal("input_mapping_changed", game_input_state, previous)
 	
 func set_movement(move_dir : Vector2) -> void:
 	emit_signal("move_player", move_dir)
@@ -54,8 +60,17 @@ func set_turn_speed(turn_left_deg_per_sec : float) -> void:
 func set_look_speed(pitch_angle_deg_per_sec : float) -> void:
 	emit_signal("look_up_down", pitch_angle_deg_per_sec)
 	
-func report_interact() -> void:
-	emit_signal("interact")
+func stop_player() -> void:
+	set_movement(Vector2(0.0, 0.0))
+	set_turn_speed(0.0)
+	set_look_speed(0.0)
+	
+func report_interact(object : Node) -> void:
+	if null == object:
+		emit_signal("interact")
+	else:
+		emit_signal("interact_with", object)
+		
 	
 func toggle_menu() -> void:
 	emit_signal("menu_toggled")
