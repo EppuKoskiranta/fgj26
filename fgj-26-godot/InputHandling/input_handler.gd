@@ -1,12 +1,12 @@
 extends Node
 class_name InputHandler
 
-@export var mouse_sensitivity : float = 1.0
+@export var mouse_sensitivity : float = 5.0
 
 const MOUSE_REL_TO_TURN_DEG_PER_SEC : float = 4.0
 const MOUSE_REL_TO_LOOK_DEG_DELTA : float = 3.0
-const TURN_MIN_DEG_PER_SEC : float = 5.0
-const LOOK_MIN_DEG_PER_SEC : float = 5.0
+const TURN_MIN_DEG_PER_SEC : float = 0.50
+const LOOK_MIN_DEG_PER_SEC : float = 0.50
 
 var is_test : bool = false
 
@@ -28,6 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Input.get_axis("move_left", "move_right")
 			)
 			Def.set_movement(movement_vector)
+
 	elif event is InputEventMouseMotion:
 		var relative_mouse_motion: Vector2 = event.relative
 		if Def.INPUT_MAPPING_FPS_MOVEMENT == Def.game_input_state:
@@ -35,6 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				* mouse_sensitivity
 			Def.set_turn_speed(-relative_mouse_motion.x if absf(relative_mouse_motion.x) > TURN_MIN_DEG_PER_SEC else 0.0)
 			Def.set_look_speed(-relative_mouse_motion.y if absf(relative_mouse_motion.y) > LOOK_MIN_DEG_PER_SEC else 0.0)
+
 	elif event.is_action("interact"):
 		match Def.game_input_state:
 			Def.INPUT_MAPPING_START, Def.INPUT_MAPPING_MENU:
@@ -45,10 +47,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif event.is_action_released("interact"):
 					Def.stop_spreading_lotion()
 			_:
-				Def.report_interact(null) # Only report the event
+				if event.is_action_pressed("interact"):
+					Def.report_interact(null) # Only report the event
+
 	elif event.is_action_released("open_menu"):
 		if Def.INPUT_MAPPING_START != Def.game_input_state:
 			Def.toggle_menu()
+
 	elif event.is_action_released("back"):
 		match Def.game_input_state:
 			Def.INPUT_MAPPING_CONVERSATION, Def.INPUT_MAPPING_LOTION_MIXING, Def.INPUT_MAPPING_MASK_LOTION_APPLY:

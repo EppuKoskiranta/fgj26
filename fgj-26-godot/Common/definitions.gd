@@ -8,9 +8,11 @@ signal look_up_down(pitch_angle_deg_per_sec : float)
 signal interact()
 signal interact_with(object : Node)
 signal interactable_present(object : Node)
+signal pick_up(object : Node)
 signal menu_toggled()
 signal back_to_previous()
 signal squirt()
+
 
 # Add global enums here
 enum GameInputState {START, MENU, FPS_MOVEMENT, CONVERSATION, LOTION_MIXING, MASK_LOTION_APPLY}
@@ -61,6 +63,12 @@ func subscribe_to_going_back(callback : Callable) -> void:
 func subscribe_to_interactable(callback : Callable) -> void:
 	interactable_present.connect(callback)
 
+func subscribe_to_pick_up(callback : Callable) -> void:
+	pick_up.connect(callback)
+
+func report_pick_up(object : Node) -> void:
+	emit_signal("pick_up", object)
+
 func subscribe_to_lotion_application(callback : Callable) -> void:
 	squirt.connect(callback)
 
@@ -103,5 +111,8 @@ func start_spreading_lotion() -> void:
 	
 func stop_spreading_lotion() -> void:
 	lotion_application = false
+
+func get_player() -> Node:
+	return get_tree().get_root().get_node("Root/Player")
 	
 	

@@ -16,4 +16,7 @@ shape = SubResource("CapsuleShape3D_gwnis")
 
 [node name="FPSView" parent="." unique_id=1199988931 instance=ExtResource("2_btcbx")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4424375, -0.5051148)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Hand" type="Node3D" parent="." unique_id=1654573906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32204023, 1.0117073, -0.7549405)

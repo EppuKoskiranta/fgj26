@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cxxf12838sxbw"]
+
+[ext_resource type="Script" uid="uid://bj35idrx42yhd" path="res://Objects/lotion_pot.gd" id="1_2k0ha"]
+[ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="1_nu0hk"]
+[ext_resource type="ArrayMesh" uid="uid://bhrvqmf4fthdn" path="res://Assets/Meshes/mixing_bowl.tres" id="2_wil2y"]
+
+[node name="LotionPot" type="Node3D" unique_id=693602640]
+script = ExtResource("1_2k0ha")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=271322341]
+mesh = ExtResource("2_wil2y")
+
+[node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("1_nu0hk")]

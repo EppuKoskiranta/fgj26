@@ -3,6 +3,7 @@ class_name GameManager
 
 var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 
+var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
 
 func _ready() -> void:
