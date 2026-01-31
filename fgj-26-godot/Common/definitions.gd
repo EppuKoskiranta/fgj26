@@ -7,6 +7,7 @@ signal turn_player(turn_left_deg_per_sec : float)
 signal look_up_down(pitch_angle_deg_per_sec : float)
 signal interact()
 signal interact_with(object : Node)
+signal interactable_present(object : Node)
 signal menu_toggled()
 signal back_to_previous()
 
@@ -46,6 +47,9 @@ func subscribe_to_menu_toggle(callback : Callable) -> void:
 func subscribe_to_going_back(callback : Callable) -> void:
 	back_to_previous.connect(callback)
 
+func subscribe_to_interactable(callback : Callable) -> void:
+	interactable_present.connect(callback)
+
 func set_input_mapping(new_mapping : GameInputState) -> void:
 	var previous : GameInputState = game_input_state
 	game_input_state = new_mapping
@@ -70,7 +74,9 @@ func report_interact(object : Node) -> void:
 		emit_signal("interact")
 	else:
 		emit_signal("interact_with", object)
-		
+	
+func report_interactable_is_near(object : Node) -> void:
+	emit_signal("interactable_present", object)
 	
 func toggle_menu() -> void:
 	emit_signal("menu_toggled")

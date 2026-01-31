@@ -62,6 +62,11 @@ back={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Obstacles"
+3d_physics/layer_2="Player"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

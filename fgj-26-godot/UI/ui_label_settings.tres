@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://b1by0bcotvxc0"]
+
+[sub_resource type="SystemFont" id="SystemFont_mqs05"]
+
+[resource]
+font = SubResource("SystemFont_mqs05")
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.5058824)
