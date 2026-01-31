@@ -6,6 +6,7 @@ extends Node
 @export var face_image : CompressedTexture2D
 @export var max_lotion_in_hand = 10.0
 @export var lotion_color : Color
+@export var docking_station : CameraDockingStation
 
 var size := 512
 
@@ -39,8 +40,14 @@ func _ready() -> void:
 	face_lotion_shader.set_shader_parameter("height_mask", height_texture)
 	face_lotion_shader.set_shader_parameter("skin_tex", face_texture)
 	face_lotion_shader.set_shader_parameter("lotion_tex", lotion_texture)
+	
+	Def.subscribe_to_lotion_application(_application)
+	
+func _application() -> void:
+	print("Spread that shit all over")
 
-
+func get_docking_station() -> CameraDockingStation:
+	return docking_station
 
 func getRatio() -> float:
 	if targetUv:

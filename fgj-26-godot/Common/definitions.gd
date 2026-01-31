@@ -11,6 +11,7 @@ signal interactable_present(object : Node)
 signal pick_up(object : Node)
 signal menu_toggled()
 signal back_to_previous()
+signal squirt()
 
 
 # Add global enums here
@@ -29,9 +30,15 @@ const SUB_INTERACT_EVENT_ONLY : InteractSubscription = InteractSubscription.EVEN
 # Add global constants and parameters here
 var game_input_state : GameInputState = INPUT_MAPPING_START
 
+var lotion_application : bool = false
+
 func _ready() -> void:
-	set_process(false)
+	set_process(true)
 	set_physics_process(false)
+	
+func _process(_delta: float) -> void:
+	if lotion_application:
+		emit_signal("squirt")
 	
 func subscribe_to_movement(move_callback : Callable, turn_callback : Callable, look_callback: Callable) -> void:
 	move_player.connect(move_callback)
@@ -61,6 +68,9 @@ func subscribe_to_pick_up(callback : Callable) -> void:
 
 func report_pick_up(object : Node) -> void:
 	emit_signal("pick_up", object)
+
+func subscribe_to_lotion_application(callback : Callable) -> void:
+	squirt.connect(callback)
 
 func set_input_mapping(new_mapping : GameInputState) -> void:
 	var previous : GameInputState = game_input_state
@@ -95,4 +105,11 @@ func toggle_menu() -> void:
 
 func go_back() -> void:
 	emit_signal("back_to_previous")
+	
+func start_spreading_lotion() -> void:
+	lotion_application = true
+	
+func stop_spreading_lotion() -> void:
+	lotion_application = false
+	
 	

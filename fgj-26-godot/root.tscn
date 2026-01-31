@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://de3e2jlrmoons" path="res://main.gd" id="1_pq8q7"]
 [ext_resource type="PackedScene" uid="uid://56psdcopd18u" path="res://Map/placeholder_map.tscn" id="2_pyidc"]
 [ext_resource type="PackedScene" uid="uid://cxxf12838sxbw" path="res://Objects/lotion_pot.tscn" id="3_tw3kd"]
+[ext_resource type="PackedScene" path="res://Map/face_mask_applying_station.tscn" id="3_bf3um"]
 [ext_resource type="PackedScene" uid="uid://ss4v7nnfm6kn" path="res://Player/player.tscn" id="3_vvh5c"]
 [ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
@@ -37,6 +38,8 @@ script = ExtResource("1_pq8q7")
 
 [node name="LotionPot" parent="Map" unique_id=693602640 instance=ExtResource("3_tw3kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1737347, 0.26373827, 0)
+[node name="FaceMaskApplyingStation" parent="Map" unique_id=1983648637 instance=ExtResource("3_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4744797, 0, 0)
 
 [node name="Player" type="Node" parent="." unique_id=1589878080]
 
@@ -50,7 +53,8 @@ unique_name_in_owner = true
 [node name="PlayerCamera" parent="." unique_id=1558064987 instance=ExtResource("5_l8v81")]
 unique_name_in_owner = true
 
-[node name="GameManager" parent="." unique_id=38479966 instance=ExtResource("6_l8v81")]
+[node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera") instance=ExtResource("6_l8v81")]
+player_camera = NodePath("../PlayerCamera")
 
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
 
