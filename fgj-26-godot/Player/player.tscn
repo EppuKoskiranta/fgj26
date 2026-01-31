@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ss4v7nnfm6kn"]
+
+[ext_resource type="Script" uid="uid://deavst2i411q1" path="res://Player/player.gd" id="1_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://cpc2r22tv5qnk" path="res://Camera/camera_docking_station.tscn" id="2_btcbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwnis"]
+
+[node name="Player" type="CharacterBody3D" unique_id=2142164832]
+script = ExtResource("1_4ntmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1469642109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_gwnis")
+
+[node name="FPSView" parent="." unique_id=1199988931 instance=ExtResource("2_btcbx")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4424375, -0.5051148)
