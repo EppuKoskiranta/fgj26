@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://j0mlh4xqbpbs"]
+
+[ext_resource type="Script" uid="uid://byxo1mgrnx20x" path="res://Test/dummy_character.gd" id="1_lpe30"]
+[ext_resource type="Script" uid="uid://dgo3bs6jwayqf" path="res://Camera/camera_docking_station.gd" id="2_ey8yr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1wnck"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1wnck"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_lpe30"]
+
+[node name="DummyCharacter" type="CharacterBody3D" unique_id=964312987]
+script = ExtResource("1_lpe30")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=54801278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1wnck")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1462458252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_1wnck")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1793785223]
+transform = Transform3D(1, 0, 0, 0, 0.95552063, 0.29492435, 0, -0.29492435, 0.95552063, 0, 1.5104585, 0)
+shape = SubResource("SeparationRayShape3D_lpe30")
+spring_length = 10.0
+
+[node name="CameraAttachment" type="Node3D" parent="SpringArm3D" unique_id=51466336]
+unique_name_in_owner = true
+script = ExtResource("2_ey8yr")
+metadata/_custom_type_script = "uid://dgo3bs6jwayqf"
