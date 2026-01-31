@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byxo1mgrnx20x" path="res://Test/dummy_character.gd" id="1_lpe30"]
 [ext_resource type="Script" uid="uid://dgo3bs6jwayqf" path="res://Camera/camera_docking_station.gd" id="2_ey8yr"]
+[ext_resource type="PackedScene" uid="uid://cpc2r22tv5qnk" path="res://Camera/camera_docking_station.tscn" id="3_2djnx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1wnck"]
 
@@ -29,3 +30,7 @@ spring_length = 10.0
 unique_name_in_owner = true
 script = ExtResource("2_ey8yr")
 metadata/_custom_type_script = "uid://dgo3bs6jwayqf"
+
+[node name="FPSView" parent="." unique_id=1199988931 instance=ExtResource("3_2djnx")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4424375, -0.5051148)
