@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b6srbcargtiaf"]
+
+[ext_resource type="Script" uid="uid://0wkr5op23rve" path="res://UI/interact_promt.gd" id="1_cuwef"]
+[ext_resource type="LabelSettings" uid="uid://b1by0bcotvxc0" path="res://UI/ui_label_settings.tres" id="2_2y2i3"]
+
+[node name="InteractPromt" type="Control" unique_id=1773362808]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cuwef")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=295588642]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 120
+
+[node name="PromtLabel" type="Label" parent="MarginContainer" unique_id=902704857]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "TBA"
+label_settings = ExtResource("2_2y2i3")
+horizontal_alignment = 1
+vertical_alignment = 2

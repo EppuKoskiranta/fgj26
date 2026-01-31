@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bpbdhbtgcho4o" path="res://GameManager/game_manager.tscn" id="6_l8v81"]
+[ext_resource type="PackedScene" uid="uid://b6srbcargtiaf" path="res://UI/interact_promt.tscn" id="7_vyht1"]
 
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
@@ -27,5 +28,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="GameManager" parent="." unique_id=38479966 instance=ExtResource("6_l8v81")]
+
+[node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
 
 [editable path="GameManager"]
