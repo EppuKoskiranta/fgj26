@@ -35,10 +35,15 @@ func _unhandled_input(event: InputEvent) -> void:
 				* mouse_sensitivity
 			Def.set_turn_speed(-relative_mouse_motion.x if absf(relative_mouse_motion.x) > TURN_MIN_DEG_PER_SEC else 0.0)
 			Def.set_look_speed(-relative_mouse_motion.y if absf(relative_mouse_motion.y) > LOOK_MIN_DEG_PER_SEC else 0.0)
-	elif event.is_action_released("interact"):
+	elif event.is_action("interact"):
 		match Def.game_input_state:
 			Def.INPUT_MAPPING_START, Def.INPUT_MAPPING_MENU:
 				pass
+			Def.INPUT_MAPPING_MASK_LOTION_APPLY:
+				if event.is_action_pressed("interact"):
+					Def.start_spreading_lotion()
+				elif event.is_action_released("interact"):
+					Def.stop_spreading_lotion()
 			_:
 				Def.report_interact(null) # Only report the event
 	elif event.is_action_released("open_menu"):

@@ -39,6 +39,7 @@ glow_enabled = true
 [node name="MapElements" type="Node" parent="." unique_id=702561825]
 
 [node name="Floor" type="StaticBody3D" parent="MapElements" unique_id=1384370610]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Floor" unique_id=1596613580]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -50,6 +51,7 @@ mesh = SubResource("BoxMesh_luqmu")
 
 [node name="Wall" type="StaticBody3D" parent="MapElements" unique_id=1648937122]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5342221, -22.969784)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Wall" unique_id=334400438]
 shape = SubResource("BoxShape3D_6gpao")
@@ -59,6 +61,7 @@ mesh = SubResource("BoxMesh_tcnmp")
 
 [node name="box" type="StaticBody3D" parent="MapElements" unique_id=785345552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.337948, 0.2909088, -3.3127193)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/box" unique_id=139232915]
 shape = SubResource("BoxShape3D_luqmu")

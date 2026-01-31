@@ -40,6 +40,11 @@ func _ready() -> void:
 	face_lotion_shader.set_shader_parameter("height_mask", height_texture)
 	face_lotion_shader.set_shader_parameter("skin_tex", face_texture)
 	face_lotion_shader.set_shader_parameter("lotion_tex", lotion_texture)
+	
+	Def.subscribe_to_lotion_application(_application)
+	
+func _application() -> void:
+	print("Spread that shit all over")
 
 func get_docking_station() -> CameraDockingStation:
 	return docking_station

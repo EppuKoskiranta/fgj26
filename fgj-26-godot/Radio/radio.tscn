@@ -8,7 +8,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5b23"]
 albedo_color = Color(1, 0.4745098, 1, 1)
 
-[node name="Radio" type="Node3D" unique_id=1372045665]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wtk5h"]
+
+[node name="Radio" type="StaticBody3D" unique_id=871936263]
+collision_mask = 3
 script = ExtResource("1_s1lw3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812068123]
@@ -21,3 +24,6 @@ autoplay = true
 
 [node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("2_wtk5h")]
 dimesions = Vector3(5, 5, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=502917959]
+shape = SubResource("BoxShape3D_wtk5h")
