@@ -3,6 +3,8 @@ class_name GameManager
 
 var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 
+var ingredient_in_player_hand : Ingredient = null
+
 func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)

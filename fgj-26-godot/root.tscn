@@ -2,11 +2,31 @@
 
 [ext_resource type="Script" uid="uid://de3e2jlrmoons" path="res://main.gd" id="1_pq8q7"]
 [ext_resource type="PackedScene" uid="uid://56psdcopd18u" path="res://Map/placeholder_map.tscn" id="2_pyidc"]
+[ext_resource type="PackedScene" uid="uid://cxxf12838sxbw" path="res://Objects/lotion_pot.tscn" id="3_tw3kd"]
 [ext_resource type="PackedScene" uid="uid://ss4v7nnfm6kn" path="res://Player/player.tscn" id="3_vvh5c"]
 [ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bpbdhbtgcho4o" path="res://GameManager/game_manager.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://b6srbcargtiaf" path="res://UI/interact_promt.tscn" id="7_vyht1"]
+[ext_resource type="PackedScene" uid="uid://drrkr0a4mdg7q" path="res://Objects/ingredient.tscn" id="8_huihk"]
+[ext_resource type="Script" uid="uid://bgejhntlqykmj" path="res://Objects/ingredient_data.gd" id="9_tw3kd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_huihk"]
+albedo_color = Color(0.99215686, 0.9529412, 0.5921569, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gd4vy"]
+material = SubResource("StandardMaterial3D_huihk")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Resource" id="Resource_qw60f"]
+script = ExtResource("9_tw3kd")
+hydration = 1
+anti_aging = 2
+brightening = 3
+name = "Test Ingredient"
+mesh = SubResource("SphereMesh_gd4vy")
+metadata/_custom_type_script = "uid://bgejhntlqykmj"
 
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
@@ -14,6 +34,9 @@ script = ExtResource("1_pq8q7")
 [node name="Map" type="Node" parent="." unique_id=761278262]
 
 [node name="PlaceholderMap" parent="Map" unique_id=2001261800 instance=ExtResource("2_pyidc")]
+
+[node name="LotionPot" parent="Map" unique_id=693602640 instance=ExtResource("3_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1737347, 0.26373827, 0)
 
 [node name="Player" type="Node" parent="." unique_id=1589878080]
 
@@ -30,5 +53,9 @@ unique_name_in_owner = true
 [node name="GameManager" parent="." unique_id=38479966 instance=ExtResource("6_l8v81")]
 
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
+
+[node name="Ingredient" parent="." unique_id=1309186205 instance=ExtResource("8_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6139723, 2.5454254)
+ingredient_data = SubResource("Resource_qw60f")
 
 [editable path="GameManager"]

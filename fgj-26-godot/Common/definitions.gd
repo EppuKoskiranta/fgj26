@@ -8,8 +8,10 @@ signal look_up_down(pitch_angle_deg_per_sec : float)
 signal interact()
 signal interact_with(object : Node)
 signal interactable_present(object : Node)
+signal pick_up(object : Node)
 signal menu_toggled()
 signal back_to_previous()
+
 
 # Add global enums here
 enum GameInputState {START, MENU, FPS_MOVEMENT, CONVERSATION, LOTION_MIXING, MASK_LOTION_APPLY}
@@ -53,6 +55,12 @@ func subscribe_to_going_back(callback : Callable) -> void:
 
 func subscribe_to_interactable(callback : Callable) -> void:
 	interactable_present.connect(callback)
+
+func subscribe_to_pick_up(callback : Callable) -> void:
+	pick_up.connect(callback)
+
+func report_pick_up(object : Node) -> void:
+	emit_signal("pick_up", object)
 
 func set_input_mapping(new_mapping : GameInputState) -> void:
 	var previous : GameInputState = game_input_state
