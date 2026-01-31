@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://56psdcopd18u"]
 
 [ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="1_ycq1y"]
+[ext_resource type="PackedScene" uid="uid://ckmh1vyiuyelh" path="res://Radio/radio.tscn" id="2_luqmu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ycq1y"]
 size = Vector3(50, 1, 50)
@@ -67,6 +68,9 @@ mesh = SubResource("BoxMesh_6gpao")
 
 [node name="Interactable" parent="MapElements/box" unique_id=1441599236 instance=ExtResource("1_ycq1y")]
 dimesions = Vector3(5, 5, 5)
+
+[node name="Radio" parent="MapElements" unique_id=1372045665 instance=ExtResource("2_luqmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4610195, 0.5905298, -4.8088427)
 
 [node name="Environment" type="Node" parent="." unique_id=1827130198]
 

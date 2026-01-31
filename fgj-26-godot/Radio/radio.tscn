@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://ckmh1vyiuyelh"]
 
 [ext_resource type="Script" uid="uid://cs4j72dwvgss6" path="res://Radio/radio.gd" id="1_s1lw3"]
+[ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="2_wtk5h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m5b23"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5b23"]
 albedo_color = Color(1, 0.4745098, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m5b23"]
-size = Vector3(2, 2, 2)
-
-[node name="Radio" type="Area3D" unique_id=295277666]
+[node name="Radio" type="Node3D" unique_id=1372045665]
 script = ExtResource("1_s1lw3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812068123]
@@ -21,8 +19,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_m5b23")
 attenuation_model = 2
 autoplay = true
 
-[node name="InteractionCollider" type="CollisionShape3D" parent="." unique_id=1894916601]
-shape = SubResource("BoxShape3D_m5b23")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("2_wtk5h")]
+dimesions = Vector3(5, 5, 5)

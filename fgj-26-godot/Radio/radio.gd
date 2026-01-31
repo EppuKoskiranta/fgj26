@@ -1,13 +1,13 @@
 extends Node3D
-
+class_name Radio
 
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
-var player_in_range: bool = false
-
 func _ready() -> void:
 	audio_player.play()
-
+	set_process(false)
+	set_physics_process(false)
+	Def.subscribe_to_interaction(self._interaction)
 
 func next_station() -> void:
 	var stations = [
@@ -24,21 +24,7 @@ func next_station() -> void:
 	audio_player.stream = stations[next_index]
 	audio_player.play()
 
-func _process(_delta: float) -> void:
-	if player_in_range:
-		# Show some UI prompt to the player (not implemented here)
-		pass
-
-	# Get the ui_accept key press to change the station
-	if Input.is_action_just_pressed("ui_accept") and player_in_range:
+func _interaction(object: Node) -> void:
+	if object == self:
 		next_station()
-
-
-func _on_body_entered(body: Node3D) -> void:
-	player_in_range = true
-	print("Entered radio range.")
-
-
-func _on_body_exited(body: Node3D) -> void:
-	player_in_range = false
-	print("Exited radio range.")
+	

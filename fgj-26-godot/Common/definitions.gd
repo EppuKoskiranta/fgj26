@@ -20,6 +20,10 @@ const INPUT_MAPPING_CONVERSATION : GameInputState = GameInputState.CONVERSATION
 const INPUT_MAPPING_LOTION_MIXING : GameInputState = GameInputState.LOTION_MIXING
 const INPUT_MAPPING_MASK_LOTION_APPLY : GameInputState = GameInputState.MASK_LOTION_APPLY
 
+enum InteractSubscription {GET_OBJECT, EVENT_ONLY}
+const SUB_INTERACT_OBJECT : InteractSubscription = InteractSubscription.GET_OBJECT
+const SUB_INTERACT_EVENT_ONLY : InteractSubscription = InteractSubscription.EVENT_ONLY
+
 # Add global constants and parameters here
 var game_input_state : GameInputState = INPUT_MAPPING_START
 
@@ -35,8 +39,8 @@ func subscribe_to_movement(move_callback : Callable, turn_callback : Callable, l
 func subscribe_to_input_mapping_changed(callback : Callable) -> void:
 	input_mapping_changed.connect(callback)
 	
-func subscribe_to_interaction(callback : Callable, event_only : bool = false) -> void:
-	if event_only:
+func subscribe_to_interaction(callback : Callable, mode : InteractSubscription = SUB_INTERACT_OBJECT) -> void:
+	if SUB_INTERACT_EVENT_ONLY == mode:
 		interact.connect(callback)
 	else:
 		interact_with.connect(callback)
