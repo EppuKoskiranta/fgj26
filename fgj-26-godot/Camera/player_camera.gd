@@ -5,6 +5,7 @@ class_name PlayerCamera
 
 var default_attachment : CameraDockingStation = null
 var current_attachment : CameraDockingStation = null
+var fps_view : bool = false
 
 func _ready() -> void:
 	set_process(false)
@@ -13,18 +14,24 @@ func _ready() -> void:
 func init(player_camera_attachment : CameraDockingStation) -> void:
 	default_attachment = player_camera_attachment
 	current_attachment = default_attachment
+	fps_view = true
 
 func _physics_process(delta: float) -> void:
 	assert(null != default_attachment, "Forgot to call init!")
 	if null == current_attachment :
 		current_attachment = default_attachment
 	
-	var tracking_weight: float = (1.0 - exp(-tracking_time_constant*delta))
-	global_transform = global_transform.interpolate_with( \
-		current_attachment.global_transform, tracking_weight)
+	if fps_view:
+		global_transform = current_attachment.global_transform
+	else:
+		var tracking_weight: float = (1.0 - exp(-tracking_time_constant*delta))
+		global_transform = global_transform.interpolate_with( \
+			current_attachment.global_transform, tracking_weight)
 
 func attach_to(viewpoint : CameraDockingStation) -> void:
 	current_attachment = viewpoint
+	fps_view = false
 
 func detach_from_viewpoint() -> void:
 	current_attachment = default_attachment
+	fps_view = true

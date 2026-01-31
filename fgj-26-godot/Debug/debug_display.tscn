@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bysekp617qb7j"]
+
+[node name="DebugDisplay" type="Control" unique_id=461522158]
+layout_mode = 3
+anchors_preset = 0

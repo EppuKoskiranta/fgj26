@@ -4,12 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://cpc2r22tv5qnk" path="res://Camera/camera_docking_station.tscn" id="2_ki0f7"]
 [ext_resource type="PackedScene" uid="uid://j0mlh4xqbpbs" path="res://Test/dummy_character.tscn" id="3_ki0f7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="4_j1wa1"]
+[ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="5_uc1er"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j1wa1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uc1er"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_j1wa1"]
+[sub_resource type="BoxMesh" id="BoxMesh_etavw"]
 size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fh0ks"]
+size = Vector3(5, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_23uej"]
+size = Vector3(5, 5, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j1wa1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -23,6 +30,12 @@ background_mode = 2
 sky = SubResource("Sky_uc1er")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uc1er"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uc1er"]
+font_size = 60
+font_color = Color(0, 0, 0, 1)
 
 [node name="CameraTest" type="Node3D" unique_id=836628731]
 script = ExtResource("1_acuyg")
@@ -51,11 +64,20 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Floor" unique_id=2087221630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_j1wa1")
+shape = SubResource("BoxShape3D_uc1er")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Floor" unique_id=1600322507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_j1wa1")
+mesh = SubResource("BoxMesh_etavw")
+
+[node name="Wall" type="StaticBody3D" parent="MapElements" unique_id=1630015221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5342221, -22.969784)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Wall" unique_id=1580699200]
+shape = SubResource("BoxShape3D_fh0ks")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Wall" unique_id=243748786]
+mesh = SubResource("BoxMesh_23uej")
 
 [node name="Environment" type="Node" parent="." unique_id=1760456227]
 
@@ -65,3 +87,39 @@ environment = SubResource("Environment_etavw")
 [node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=459322985]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+
+[node name="InputHandler" parent="." unique_id=874846861 instance=ExtResource("5_uc1er")]
+unique_name_in_owner = true
+
+[node name="DummyMenu" type="Control" parent="." unique_id=748392818]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DummyMenu" unique_id=1941859897]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 120
+
+[node name="ColorRect" type="ColorRect" parent="DummyMenu/MarginContainer" unique_id=706400126]
+material = SubResource("CanvasItemMaterial_uc1er")
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DummyMenu/MarginContainer" unique_id=1257329132]
+layout_mode = 2
+size_flags_vertical = 1
+text = "DUMMY MENU"
+label_settings = SubResource("LabelSettings_uc1er")
+horizontal_alignment = 1
