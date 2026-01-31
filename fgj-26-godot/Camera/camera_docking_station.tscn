@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cpc2r22tv5qnk"]
+
+[ext_resource type="Script" uid="uid://dgo3bs6jwayqf" path="res://Camera/camera_docking_station.gd" id="1_j1dt8"]
+
+[node name="CameraDockingStation" type="Node3D" unique_id=1199988931]
+script = ExtResource("1_j1dt8")

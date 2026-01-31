@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cheres3tb217d"]
+
+[ext_resource type="Script" uid="uid://dhnlcd0ey4gxu" path="res://Test/camera_test.gd" id="1_acuyg"]
+[ext_resource type="PackedScene" uid="uid://cpc2r22tv5qnk" path="res://Camera/camera_docking_station.tscn" id="2_ki0f7"]
+[ext_resource type="PackedScene" uid="uid://j0mlh4xqbpbs" path="res://Test/dummy_character.tscn" id="3_ki0f7"]
+[ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="4_j1wa1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1wa1"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j1wa1"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j1wa1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uc1er"]
+sky_material = SubResource("ProceduralSkyMaterial_j1wa1")
+
+[sub_resource type="Environment" id="Environment_etavw"]
+background_mode = 2
+sky = SubResource("Sky_uc1er")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="CameraTest" type="Node3D" unique_id=836628731]
+script = ExtResource("1_acuyg")
+
+[node name="Viewpoint1" parent="." unique_id=1199988931 instance=ExtResource("2_ki0f7")]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0.5, -0.8660254, 0, 0.8660254, 0.5, 1, 2.1855694e-08, -3.7855173e-08, -10.209707, 4.778207, -9.006875)
+
+[node name="Viewpoint2" parent="." unique_id=1078809098 instance=ExtResource("2_ki0f7")]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 30.668709, 3.3579674, 0)
+
+[node name="Viewpoint3" parent="." unique_id=722795243 instance=ExtResource("2_ki0f7")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9550665, 0.29639158, 0, -0.29639158, 0.9550665, 0, 4.9094715, 21.621037)
+
+[node name="DummyCharacter" parent="." unique_id=964312987 instance=ExtResource("3_ki0f7")]
+unique_name_in_owner = true
+
+[node name="PlayerCamera" parent="." unique_id=1558064987 instance=ExtResource("4_j1wa1")]
+unique_name_in_owner = true
+
+[node name="MapElements" type="Node" parent="." unique_id=966808963]
+
+[node name="Floor" type="StaticBody3D" parent="MapElements" unique_id=1059681050]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Floor" unique_id=2087221630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_j1wa1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Floor" unique_id=1600322507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_j1wa1")
+
+[node name="Environment" type="Node" parent="." unique_id=1760456227]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1816758082]
+environment = SubResource("Environment_etavw")
+
+[node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=459322985]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
