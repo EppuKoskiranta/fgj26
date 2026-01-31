@@ -1,10 +1,26 @@
 [gd_scene format=3 uid="uid://c5kbiim4lphdj"]
 
 [ext_resource type="Script" uid="uid://de3e2jlrmoons" path="res://main.gd" id="1_pq8q7"]
+[ext_resource type="PackedScene" uid="uid://56psdcopd18u" path="res://Map/placeholder_map.tscn" id="2_pyidc"]
+[ext_resource type="PackedScene" uid="uid://ss4v7nnfm6kn" path="res://Player/player.tscn" id="3_vvh5c"]
+[ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
+[ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
 
 [node name="Map" type="Node" parent="." unique_id=761278262]
 
+[node name="PlaceholderMap" parent="Map" unique_id=2001261800 instance=ExtResource("2_pyidc")]
+
 [node name="Player" type="Node" parent="." unique_id=1589878080]
+
+[node name="Player" parent="Player" unique_id=2142164832 instance=ExtResource("3_vvh5c")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0066845417, 0)
+
+[node name="InputHandler" parent="." unique_id=874846861 instance=ExtResource("4_jnlp7")]
+unique_name_in_owner = true
+
+[node name="PlayerCamera" parent="." unique_id=1558064987 instance=ExtResource("5_l8v81")]
+unique_name_in_owner = true

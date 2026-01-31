@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://56psdcopd18u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ydk5"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ycq1y"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_luqmu"]
+size = Vector3(5, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6gpao"]
+size = Vector3(5, 5, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcnmp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uc1er"]
+sky_material = SubResource("ProceduralSkyMaterial_tcnmp")
+
+[sub_resource type="Environment" id="Environment_urlq3"]
+background_mode = 2
+sky = SubResource("Sky_uc1er")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="PlaceholderMap" type="Node3D" unique_id=2001261800]
+
+[node name="MapElements" type="Node" parent="." unique_id=702561825]
+
+[node name="Floor" type="StaticBody3D" parent="MapElements" unique_id=1384370610]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Floor" unique_id=1596613580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_8ydk5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Floor" unique_id=1750829926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_ycq1y")
+
+[node name="Wall" type="StaticBody3D" parent="MapElements" unique_id=1648937122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5342221, -22.969784)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Wall" unique_id=334400438]
+shape = SubResource("BoxShape3D_luqmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Wall" unique_id=1635581767]
+mesh = SubResource("BoxMesh_6gpao")
+
+[node name="Environment" type="Node" parent="." unique_id=1827130198]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1031688576]
+environment = SubResource("Environment_urlq3")
+
+[node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=44751922]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
