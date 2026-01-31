@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="fgj26-godot"
+run/main_scene="uid://c5kbiim4lphdj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Def="*uid://c7vij1woyghhv"
 
 [physics]
 
