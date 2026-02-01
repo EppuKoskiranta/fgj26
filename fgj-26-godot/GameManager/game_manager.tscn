@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cd1asr7x8yv00" path="res://Objects/customer_logic.tscn" id="2_rt1ce"]
 [ext_resource type="Script" uid="uid://fna3fggofhb4" path="res://UI/start_menu.gd" id="3_y47yw"]
 [ext_resource type="Material" uid="uid://c0ahati7qw452" path="res://UI/menu background_shaderl.tres" id="4_i0lca"]
+[ext_resource type="LabelSettings" uid="uid://b1by0bcotvxc0" path="res://UI/ui_label_settings.tres" id="5_32bk0"]
 [ext_resource type="Texture2D" uid="uid://t6o72vvht3b7" path="res://Assets/Textures/ButtonNormal.png" id="5_bgl21"]
 [ext_resource type="Texture2D" uid="uid://nyak7o17vq0x" path="res://Assets/Textures/ButtonPressed.png" id="6_32bk0"]
 [ext_resource type="LabelSettings" uid="uid://dwbckyy8lusco" path="res://UI/button_label_settings.tres" id="7_34q73"]
@@ -15,8 +16,61 @@ script = ExtResource("1_5dfvm")
 [node name="CustomerLogic" parent="." unique_id=1030538246 instance=ExtResource("2_rt1ce")]
 unique_name_in_owner = true
 
+[node name="ResultDisplay" type="Control" parent="." unique_id=1412060401]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_y47yw")
+
+[node name="MarginContainer" type="MarginContainer" parent="ResultDisplay" unique_id=1786931759]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -184.0
+offset_right = 152.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="ResultDisplay/MarginContainer" unique_id=1413180318]
+material = ExtResource("4_i0lca")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ResultDisplay/MarginContainer" unique_id=1425379003]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ResultText" type="Label" parent="ResultDisplay/MarginContainer/MarginContainer" unique_id=1863950706]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+label_settings = ExtResource("5_32bk0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseMenu" type="Control" parent="." unique_id=1240488457]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +145,7 @@ vertical_alignment = 1
 
 [node name="DialogueWithCustomer" parent="." unique_id=16143200 instance=ExtResource("8_i0lca")]
 unique_name_in_owner = true
+visible = false
 
 [connection signal="arrived_to_location" from="CustomerLogic" to="." method="_on_customer_logic_arrived_to_location"]
 [connection signal="quit_game" from="PauseMenu" to="." method="_on_pause_menu_quit_game"]
