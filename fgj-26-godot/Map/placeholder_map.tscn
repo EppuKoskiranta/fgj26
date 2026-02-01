@@ -350,7 +350,7 @@ mesh = SubResource("BoxMesh_lqxhj")
 shape = SubResource("BoxShape3D_4hwbv")
 
 [node name="Node3D2" type="Node3D" parent="MapElements/Room" unique_id=170903180]
-transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, -16.975939, 3.6629686, 0)
+transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, -16.976, 3.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D2" unique_id=950236798]
 mesh = SubResource("BoxMesh_lqxhj")
@@ -373,7 +373,7 @@ mesh = SubResource("BoxMesh_lqxhj")
 shape = SubResource("BoxShape3D_4hwbv")
 
 [node name="Node3D4" type="Node3D" parent="MapElements/Room" unique_id=1526769914]
-transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, 11.192757, 3.6629686, 0)
+transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, 11.193, 3.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D4" unique_id=959658793]
 mesh = SubResource("BoxMesh_lqxhj")
