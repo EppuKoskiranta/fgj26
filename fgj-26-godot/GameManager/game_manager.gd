@@ -70,9 +70,11 @@ func _input_mapping_changed(new_state : Def.GameInputState, prev_state : Def.Gam
 	else:
 		dialogue_with_customer.hide()
 	
-	if Def.INPUT_MAPPING_MASK_LOTION_APPLY == prev_state \ 
-		and Customer.State.LOTIONABLE == customer_logic.state:
+	if Def.INPUT_MAPPING_MASK_LOTION_APPLY == prev_state and Customer.State.LOTIONABLE == customer_logic.state:
 		customer_logic.move_state()
+
+	if prev_state == Def.INPUT_MAPPING_MASK_LOTION_APPLY and customer_logic.state == Customer.State.LEAVE:
+		_revert_hide_customer_and_replace_with_fake()
 	
 func _interacted_with(object : Node) -> void:
 	# TODO: change input mapping based on what we interacted with
@@ -95,8 +97,6 @@ func _on_customer_logic_arrived_to_location() -> void:
 	
 	if state == Customer.State.LOTIONABLE:
 		_hide_customer_and_replace_with_fake()
-	else:
-		_revert_hide_customer_and_replace_with_fake()
 
 func _hide_customer_and_replace_with_fake():
 	customer_logic.visible = false
