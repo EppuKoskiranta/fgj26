@@ -338,7 +338,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057439804, 0.42299306, -0.
 [node name="Room" type="Node3D" parent="MapElements" unique_id=2103401445]
 
 [node name="Node3D" type="Node3D" parent="MapElements/Room" unique_id=75926161]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1653576, 3.5, -8.635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1653576, 3.5, -6.9487705)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D" unique_id=1572267433]
 transform = Transform3D(1.4028071, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -383,13 +383,61 @@ mesh = SubResource("BoxMesh_lqxhj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D4/StaticBody3D" unique_id=1750980690]
 shape = SubResource("BoxShape3D_4hwbv")
 
+[node name="roof" type="Node3D" parent="MapElements/Room" unique_id=2788925]
+transform = Transform3D(1, 0, 0, 0, 0.044689745, -1.0375963, 0, 6.322194, 0.007334465, -2.3307152, 7, -13.897541)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/roof" unique_id=807391384]
+transform = Transform3D(1.4028071, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/roof" unique_id=1228847530]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/roof/StaticBody3D" unique_id=92323500]
+shape = SubResource("BoxShape3D_4hwbv")
+
+[node name="Lights" type="Node3D" parent="MapElements/Room" unique_id=188815734]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MapElements/Room/Lights" unique_id=1971689153]
+transform = Transform3D(-0.974566, 1.5684886e-08, 0.22410075, 0.21627322, 0.26198703, 0.94052577, -0.05871147, 0.96507144, -0.25532365, -11.205537, 6.5046816, -0.040060043)
+light_color = Color(0.7886608, 0.48736185, 0.32654327, 1)
+light_energy = 7.68
+light_indirect_energy = 4.107
+light_size = 0.188
+light_specular = 2.209
+spot_range = 9.54
+spot_attenuation = 0.61
+spot_angle_attenuation = 0.7578596
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="MapElements/Room/Lights" unique_id=819821326]
+transform = Transform3D(0.9454218, 0.19683796, -0.2596775, 0.021745108, 0.7570373, 0.6530099, 0.32512265, -0.6230166, 0.7114394, 3.1364722, 5.747689, 5.6423645)
+light_color = Color(0.9047478, 0.37205693, 0.4062181, 1)
+light_energy = 7.68
+light_indirect_energy = 4.107
+light_size = 0.188
+light_specular = 2.209
+spot_range = 9.54
+spot_attenuation = 0.61
+spot_angle_attenuation = 0.7578596
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="MapElements/Room/Lights" unique_id=1829332151]
+transform = Transform3D(1, 0, 0, 0, 0.4519366, 0.8920501, 0, -0.8920501, 0.4519366, -7.3428435, 6.7462425, 5.5013127)
+light_color = Color(0.73283917, 0.50362307, 0.5049133, 1)
+light_energy = 7.68
+light_indirect_energy = 4.107
+light_size = 0.188
+light_specular = 2.209
+shadow_enabled = true
+spot_range = 9.54
+spot_attenuation = 0.61
+spot_angle_attenuation = 0.7578596
+
 [node name="Environment" type="Node" parent="." unique_id=1827130198]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1031688576]
 environment = SubResource("Environment_urlq3")
 
 [node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=44751922]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -15.351292, 7.68246, -9.222078)
 shadow_enabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=773953880]
