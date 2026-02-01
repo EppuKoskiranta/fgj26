@@ -5,8 +5,8 @@ class_name InputHandler
 
 const MOUSE_REL_TO_TURN_DEG_PER_SEC : float = 4.0
 const MOUSE_REL_TO_LOOK_DEG_DELTA : float = 3.0
-const TURN_MIN_DEG_PER_SEC : float = 0.50
-const LOOK_MIN_DEG_PER_SEC : float = 0.50
+const TURN_MIN_DEG_PER_SEC : float = 0.001
+const LOOK_MIN_DEG_PER_SEC : float = 0.001
 
 var is_test : bool = false
 
