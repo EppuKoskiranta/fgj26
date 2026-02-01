@@ -4,18 +4,160 @@
 [ext_resource type="PackedScene" uid="uid://cxxf12838sxbw" path="res://Objects/lotion_pot.tscn" id="2_6gpao"]
 [ext_resource type="PackedScene" uid="uid://ckmh1vyiuyelh" path="res://Radio/radio.tscn" id="2_luqmu"]
 [ext_resource type="PackedScene" uid="uid://bv6b7owa885y2" path="res://Map/face_mask_applying_station.tscn" id="3_tcnmp"]
+[ext_resource type="PackedScene" uid="uid://drrkr0a4mdg7q" path="res://Objects/ingredient.tscn" id="4_t7glo"]
+[ext_resource type="Script" uid="uid://cmxui65afvxed" path="res://Common/lotion_effects.gd" id="5_vb6nc"]
+[ext_resource type="Script" uid="uid://cfnnyp670ocsh" path="res://Objects/ingredient_data.gd" id="6_6j0f0"]
+[ext_resource type="ArrayMesh" uid="uid://b6qhv0yion815" path="res://Assets/Meshes/aloe.tres" id="6_vb6nc"]
+[ext_resource type="ArrayMesh" uid="uid://bcsst0jyo6pkx" path="res://Assets/Meshes/honey.tres" id="8_6j0f0"]
+[ext_resource type="ArrayMesh" uid="uid://dbpk7570j7pfc" path="res://Assets/Meshes/yogurt.tres" id="9_f5tyt"]
+[ext_resource type="ArrayMesh" uid="uid://chb5qgx5g76cu" path="res://Assets/Meshes/avocado.tres" id="10_qa7xj"]
+[ext_resource type="ArrayMesh" uid="uid://c468o3aoxdmcc" path="res://Assets/Meshes/coconut.tres" id="11_i2t4u"]
+[ext_resource type="ArrayMesh" uid="uid://5lcfy284vmmg" path="res://Assets/Meshes/eggwhite.tres" id="12_48r0u"]
+[ext_resource type="ArrayMesh" uid="uid://cay4qgbgefurc" path="res://Assets/Meshes/oatmeal.tres" id="13_8f7sy"]
+[ext_resource type="ArrayMesh" uid="uid://cq4cukhpuya07" path="res://Assets/Meshes/green_tea.tres" id="14_23g6b"]
+[ext_resource type="ArrayMesh" uid="uid://vxh5x3fiovru" path="res://Assets/Meshes/lemon.tres" id="15_i08j2"]
+[ext_resource type="ArrayMesh" uid="uid://frqet78rx0d5" path="res://Assets/Meshes/charcoal.tres" id="16_lqxhj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ycq1y"]
 size = Vector3(50, 1, 50)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j0f0"]
+albedo_color = Color(0.21, 0.16695, 0.0378, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_luqmu"]
+material = SubResource("StandardMaterial3D_6j0f0")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6gpao"]
 size = Vector3(0.7494507, 1.1879883, 2.8563232)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb6nc"]
+albedo_color = Color(0.08627451, 0.21960784, 0.10980392, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_tcnmp"]
+material = SubResource("StandardMaterial3D_vb6nc")
 size = Vector3(0.745, 1.18, 2.855)
+
+[sub_resource type="Resource" id="Resource_t7glo"]
+script = ExtResource("5_vb6nc")
+hydration = 3
+soothing_calming = 2
+brightening = 1
+
+[sub_resource type="Resource" id="Resource_vb6nc"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_t7glo")
+name = "Aloe Vera"
+mesh = ExtResource("6_vb6nc")
+
+[sub_resource type="Resource" id="Resource_6j0f0"]
+script = ExtResource("5_vb6nc")
+hydration = 1
+anti_aging = 1
+soothing_calming = 2
+
+[sub_resource type="Resource" id="Resource_f5tyt"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_6j0f0")
+name = "Honey"
+mesh = ExtResource("8_6j0f0")
+
+[sub_resource type="Resource" id="Resource_qa7xj"]
+script = ExtResource("5_vb6nc")
+hydration = 3
+soothing_calming = 2
+
+[sub_resource type="Resource" id="Resource_i2t4u"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_qa7xj")
+name = "Yogurt"
+mesh = ExtResource("9_f5tyt")
+
+[sub_resource type="Resource" id="Resource_48r0u"]
+script = ExtResource("5_vb6nc")
+hydration = 2
+anti_aging = 2
+
+[sub_resource type="Resource" id="Resource_8f7sy"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_48r0u")
+name = "Avocado"
+mesh = ExtResource("10_qa7xj")
+
+[sub_resource type="Resource" id="Resource_23g6b"]
+script = ExtResource("5_vb6nc")
+hydration = 3
+
+[sub_resource type="Resource" id="Resource_i08j2"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_23g6b")
+name = "Coconut Oil"
+mesh = ExtResource("11_i2t4u")
+
+[sub_resource type="Resource" id="Resource_lqxhj"]
+script = ExtResource("5_vb6nc")
+anti_aging = 2
+brightening = 1
+
+[sub_resource type="Resource" id="Resource_4hwbv"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_lqxhj")
+name = "Egg White"
+mesh = ExtResource("12_48r0u")
+
+[sub_resource type="Resource" id="Resource_yo8po"]
+script = ExtResource("5_vb6nc")
+anti_aging = 2
+soothing_calming = 2
+
+[sub_resource type="Resource" id="Resource_wsbb5"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_yo8po")
+name = "Oatmeal"
+mesh = ExtResource("13_8f7sy")
+
+[sub_resource type="Resource" id="Resource_tbjm0"]
+script = ExtResource("5_vb6nc")
+cleansing = 3
+brightening = 3
+
+[sub_resource type="Resource" id="Resource_82qxt"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_tbjm0")
+name = "Lemon"
+mesh = ExtResource("15_i08j2")
+
+[sub_resource type="Resource" id="Resource_l6sdt"]
+script = ExtResource("5_vb6nc")
+cleansing = 3
+anti_aging = 1
+
+[sub_resource type="Resource" id="Resource_x85xr"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_l6sdt")
+name = "Charcoal"
+mesh = ExtResource("16_lqxhj")
+
+[sub_resource type="Resource" id="Resource_4gs7h"]
+script = ExtResource("5_vb6nc")
+anti_aging = 3
+soothing_calming = 2
+
+[sub_resource type="Resource" id="Resource_btcrc"]
+script = ExtResource("6_6j0f0")
+lotion_effects = SubResource("Resource_4gs7h")
+name = "Green Tea"
+mesh = ExtResource("14_23g6b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7glo"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7glo"]
+albedo_color = Color(0.0858, 0.22, 0.10816664, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vb6nc"]
+material = SubResource("StandardMaterial3D_t7glo")
+size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcnmp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -63,10 +205,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_luqmu")
 
 [node name="Radio" parent="MapElements" unique_id=1372045665 instance=ExtResource("2_luqmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4610195, 0.5905298, -4.8088427)
-
-[node name="LotionPot" parent="MapElements" unique_id=693602640 instance=ExtResource("2_6gpao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1737347, 0.66181433, 1.5094626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.61429, 0.5, 6.411949)
 
 [node name="FaceMaskApplyingStation" parent="MapElements" unique_id=1983648637 instance=ExtResource("3_tcnmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4744797, 0, 0)
@@ -81,6 +220,109 @@ shape = SubResource("BoxShape3D_6gpao")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/FrontDesk" unique_id=578737651]
 mesh = SubResource("BoxMesh_tcnmp")
+
+[node name="MixingRoom" type="Node3D" parent="MapElements" unique_id=2117847238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.057679, 0, 0)
+
+[node name="IngredientShelf" type="StaticBody3D" parent="MapElements/MixingRoom" unique_id=1624170093]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, 0)
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MixingRoom/IngredientShelf" unique_id=317932176]
+shape = SubResource("BoxShape3D_6gpao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/MixingRoom/IngredientShelf" unique_id=205338132]
+mesh = SubResource("BoxMesh_tcnmp")
+
+[node name="IngredientContainer" type="Node3D" parent="MapElements/MixingRoom/IngredientShelf" unique_id=189100296]
+
+[node name="Ingredient_aloe" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=1309186205 instance=ExtResource("4_t7glo")]
+transform = Transform3D(-2.4041263e-08, 0, -0.55, 0, 0.55, 0, 0.55, 0, -2.4041263e-08, -5.0041763e-08, 0.64708006, -1.1448231)
+ingredient_data = SubResource("Resource_vb6nc")
+
+[node name="Ingredient_honey" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=2013721640 instance=ExtResource("4_t7glo")]
+transform = Transform3D(7.212379e-08, 0, 0.55, 0, 0.55, 0, -0.55, 0, 7.212379e-08, 0.028079964, 0.64636314, -0.5256176)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_f5tyt")
+
+[node name="Ingredient_yogurt" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=1207514115 instance=ExtResource("4_t7glo")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 8.776169e-09, 0.64322054, 0.20077229)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_i2t4u")
+
+[node name="Ingredient_avocado" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=1887886093 instance=ExtResource("4_t7glo")]
+transform = Transform3D(-0.55, 3.232008e-09, -4.7864294e-08, -3.2320087e-09, 0.5450073, 0.073939726, 4.786429e-08, 0.073939726, -0.5450073, 4.2052534e-08, 0.64322054, 0.9620466)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_8f7sy")
+
+[node name="IngredientShelf2" type="StaticBody3D" parent="MapElements/MixingRoom" unique_id=2068877546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9070797, 0.5, 1.8313596)
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MixingRoom/IngredientShelf2" unique_id=732966186]
+shape = SubResource("BoxShape3D_6gpao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/MixingRoom/IngredientShelf2" unique_id=614354980]
+mesh = SubResource("BoxMesh_tcnmp")
+
+[node name="IngredientContainer" type="Node3D" parent="MapElements/MixingRoom/IngredientShelf2" unique_id=1147559673]
+
+[node name="Ingredient_coconut_oil" parent="MapElements/MixingRoom/IngredientShelf2/IngredientContainer" unique_id=67059562 instance=ExtResource("4_t7glo")]
+transform = Transform3D(-2.4041263e-08, 0, -0.55, 0, 0.55, 0, 0.55, 0, -2.4041263e-08, 0, 0.71788704, -1.0017402)
+mesh_scale = Vector3(0.2, 0.2, 0.2)
+ingredient_data = SubResource("Resource_i08j2")
+
+[node name="Ingredient_egg_white" parent="MapElements/MixingRoom/IngredientShelf2/IngredientContainer" unique_id=295621189 instance=ExtResource("4_t7glo")]
+transform = Transform3D(0.08542042, -0.36577073, 0.057577424, -0.37004307, -0.08641816, 4.852529e-08, 0.013093991, -0.05606876, -0.3756126, 0.05058384, 0.76377094, -0.106814265)
+mesh_scale = Vector3(0.25, 0.25, 0.25)
+ingredient_data = SubResource("Resource_4hwbv")
+
+[node name="Ingredient_oatmeal" parent="MapElements/MixingRoom/IngredientShelf2/IngredientContainer" unique_id=1758513828 instance=ExtResource("4_t7glo")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.6129048, 0.9040494)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_wsbb5")
+
+[node name="IngredientShelf3" type="StaticBody3D" parent="MapElements/MixingRoom" unique_id=1500331681]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.5, 3.7092128)
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MixingRoom/IngredientShelf3" unique_id=1707892715]
+shape = SubResource("BoxShape3D_6gpao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/MixingRoom/IngredientShelf3" unique_id=585550521]
+mesh = SubResource("BoxMesh_tcnmp")
+
+[node name="IngredientContainer" type="Node3D" parent="MapElements/MixingRoom/IngredientShelf3" unique_id=681308356]
+
+[node name="Ingredient_lemon" parent="MapElements/MixingRoom/IngredientShelf3/IngredientContainer" unique_id=1218320333 instance=ExtResource("4_t7glo")]
+transform = Transform3D(0.17666204, 0.11946987, 0.5069689, -0.30810505, 0.45559993, 2.4099671e-15, -0.41995457, -0.28399944, 0.2132663, 0, 0.6735128, -1.0094538)
+mesh_scale = Vector3(0.2, 0.2, 0.2)
+ingredient_data = SubResource("Resource_82qxt")
+
+[node name="Ingredient_charcoal" parent="MapElements/MixingRoom/IngredientShelf3/IngredientContainer" unique_id=1823505553 instance=ExtResource("4_t7glo")]
+transform = Transform3D(-0.55, 0, 4.8082526e-08, 0, 0.55, 0, -4.8082526e-08, 0, -0.55, 0.028079987, 0.64636314, 0.055267334)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_x85xr")
+
+[node name="Ingredient_green_tea" parent="MapElements/MixingRoom/IngredientShelf3/IngredientContainer" unique_id=324514843 instance=ExtResource("4_t7glo")]
+transform = Transform3D(-0.55, 0, -4.808253e-08, 0, 0.55, 0, 4.808253e-08, 0, -0.55, 0, 0.6895374, 0.9620466)
+mesh_scale = Vector3(0.5, 0.5, 0.5)
+ingredient_data = SubResource("Resource_btcrc")
+
+[node name="LotionPotTable" type="StaticBody3D" parent="MapElements/MixingRoom" unique_id=237286918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1374836, 0.5, -0.0082736015)
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MixingRoom/LotionPotTable" unique_id=529462630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09972072, 0)
+shape = SubResource("BoxShape3D_t7glo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/MixingRoom/LotionPotTable" unique_id=786196153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_vb6nc")
+
+[node name="LotionPot" parent="MapElements/MixingRoom/LotionPotTable" unique_id=693602640 instance=ExtResource("2_6gpao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057439804, 0.42299306, -0.009800196)
 
 [node name="Environment" type="Node" parent="." unique_id=1827130198]
 
