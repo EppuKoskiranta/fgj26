@@ -6,16 +6,12 @@ extends Node
 @export var face_lotion_shader : ShaderMaterial
 @export var face_image : CompressedTexture2D
 @export var max_lotion_in_hand = 10.0
-<<<<<<< Updated upstream
 @export var lotion_color : Color
 @onready var docking_station: CameraDockingStation = %CameraDockingStation
-=======
-@export var docking_station : CameraDockingStation
 @export var game_manager : GameManager
 @export var lotion_pos : Node3D
 
 @onready var lotion_table := $Table as MeshInstance3D
->>>>>>> Stashed changes
 
 var size := 512
 
