@@ -159,6 +159,16 @@ albedo_color = Color(0.0858, 0.22, 0.10816664, 1)
 material = SubResource("StandardMaterial3D_t7glo")
 size = Vector3(0.8, 0.8, 0.8)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqxhj"]
+albedo_color = Color(1, 0.7607843, 0.7607843, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lqxhj"]
+material = SubResource("StandardMaterial3D_lqxhj")
+size = Vector3(25, 7, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hwbv"]
+size = Vector3(32.975, 7, 1)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcnmp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -205,7 +215,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_luqmu")
 
 [node name="Radio" parent="MapElements" unique_id=1372045665 instance=ExtResource("2_luqmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.61429, 0.5, 6.411949)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.61429, 0.0041760206, 6.411949)
 
 [node name="FaceMaskApplyingStation" parent="MapElements" unique_id=1983648637 instance=ExtResource("3_tcnmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4744797, 0, 0)
@@ -323,6 +333,54 @@ mesh = SubResource("BoxMesh_vb6nc")
 
 [node name="LotionPot" parent="MapElements/MixingRoom/LotionPotTable" unique_id=693602640 instance=ExtResource("2_6gpao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057439804, 0.42299306, -0.009800196)
+
+[node name="Room" type="Node3D" parent="MapElements" unique_id=2103401445]
+
+[node name="Node3D" type="Node3D" parent="MapElements/Room" unique_id=75926161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1653576, 3.5, -8.635)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D" unique_id=1572267433]
+transform = Transform3D(1.4028071, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D" unique_id=720790128]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D/StaticBody3D" unique_id=1657758481]
+shape = SubResource("BoxShape3D_4hwbv")
+
+[node name="Node3D2" type="Node3D" parent="MapElements/Room" unique_id=170903180]
+transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, -16.975939, 3.6629686, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D2" unique_id=950236798]
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D2" unique_id=1969983503]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D2/StaticBody3D" unique_id=770652835]
+shape = SubResource("BoxShape3D_4hwbv")
+
+[node name="Node3D3" type="Node3D" parent="MapElements/Room" unique_id=1824748446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.925216, 3.5, 8.171148)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D3" unique_id=1976519834]
+transform = Transform3D(1.4028071, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D3" unique_id=1351819956]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D3/StaticBody3D" unique_id=632967496]
+shape = SubResource("BoxShape3D_4hwbv")
+
+[node name="Node3D4" type="Node3D" parent="MapElements/Room" unique_id=1526769914]
+transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, 11.192757, 3.6629686, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D4" unique_id=959658793]
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D4" unique_id=1808396279]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D4/StaticBody3D" unique_id=1750980690]
+shape = SubResource("BoxShape3D_4hwbv")
 
 [node name="Environment" type="Node" parent="." unique_id=1827130198]
 

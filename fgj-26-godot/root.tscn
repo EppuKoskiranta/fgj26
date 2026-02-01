@@ -17,7 +17,7 @@ visible = false
 
 [node name="Player" parent="." unique_id=2142164832 instance=ExtResource("3_vvh5c")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0066845417, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.0066845417, 0)
 
 [node name="Map" type="Node" parent="." unique_id=761278262]
 
@@ -28,6 +28,7 @@ unique_name_in_owner = true
 
 [node name="PlayerCamera" parent="." unique_id=1558064987 instance=ExtResource("5_l8v81")]
 unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera", "game_map") instance=ExtResource("6_l8v81")]
 player_camera = NodePath("../PlayerCamera")
