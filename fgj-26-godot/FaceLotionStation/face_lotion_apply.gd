@@ -81,7 +81,7 @@ func get_covered_ratio() -> float:
 		
 func get_location_ratio() -> Array:
 	if lotion_object:
-		return lotion_object.effects.get_ratio()
+		return lotion_object.lotion_effects.get_ratio()
 	
 	return [0.0,0.0,0.0,0.0,0.0]
 	
@@ -109,13 +109,14 @@ func add_lotion(lotion_object : LotionObject):
 func _calculateRatio() -> float:
 	var total : int = 0
 	var covered : int = 0
-	for x in range(size):
-		for y in range(size):	
-			#check if targetUV.r value is set
-			if targetUv.get_pixel(x, y).r > 0:
-				total += 1
-				if coverage_img.get_pixel(x, y).r > 0:
-					covered += 1
+	if targetUv is Image and targetUv != null:
+		for x in range(size):
+			for y in range(size):	
+				#check if targetUV.r value is set
+				if targetUv.get_pixel(x, y).r > 0:
+					total += 1
+					if coverage_img.get_pixel(x, y).r > 0:
+						covered += 1
 	if total == 0:
 		return 0.0
 	return float(covered) / float(total)
