@@ -40,7 +40,7 @@ func generate_preferences() -> void:
 	# TODO: randomize internal variables of customer expectations
 	nr_of_asks_left = MAX_NR_OF_QUESTIONS
 
-func move_state() -> void:
+func move_state() -> State:
 	match state:
 		State.REUSABLE:
 			self.show()
@@ -63,6 +63,7 @@ func move_state() -> void:
 		
 	state = (state + 1) % State.MAX_NR_OF_STATES as State
 	print(State.keys()[state])
+	return state
 	
 func _physics_process(delta: float) -> void:
 	

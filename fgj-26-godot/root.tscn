@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bpbdhbtgcho4o" path="res://GameManager/game_manager.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://b6srbcargtiaf" path="res://UI/interact_promt.tscn" id="7_vyht1"]
+[ext_resource type="Script" uid="uid://hmong6oonwl8" path="res://ScoreSystem/score_system.gd" id="8_huihk"]
 
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
@@ -35,6 +36,10 @@ game_map = NodePath("../Map/PlaceholderMap")
 
 [node name="CustomerLogic" parent="GameManager" index="0" unique_id=1030538246]
 transform = Transform3D(-0.999822, 0, -0.018865809, 0, 1, 0, 0.018865809, 0, -0.999822, 6.7174234, 0, 8.530996)
+
+[node name="ScoreSystem" type="Node" parent="GameManager" unique_id=137218083]
+script = ExtResource("8_huihk")
+metadata/_custom_type_script = "uid://hmong6oonwl8"
 
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
 
