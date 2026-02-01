@@ -12,6 +12,7 @@ signal pick_up(object : Node)
 signal menu_toggled()
 signal back_to_previous()
 signal squirt()
+signal debug_it()
 
 
 # Add global enums here
@@ -71,6 +72,9 @@ func report_pick_up(object : Node) -> void:
 
 func subscribe_to_lotion_application(callback : Callable) -> void:
 	squirt.connect(callback)
+	
+func subscribe_to_debug(callback : Callable) -> void:
+	debug_it.connect(callback)
 
 func set_input_mapping(new_mapping : GameInputState) -> void:
 	var previous : GameInputState = game_input_state
@@ -115,4 +119,5 @@ func stop_spreading_lotion() -> void:
 func get_player() -> Node:
 	return get_tree().get_root().get_node("Root/Player")
 	
-	
+func debug() -> void:
+	emit_signal("debug_it")

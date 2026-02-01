@@ -6,7 +6,7 @@ extends Node
 @export var face_image : CompressedTexture2D
 @export var max_lotion_in_hand = 10.0
 @export var lotion_color : Color
-@export var docking_station : CameraDockingStation
+@onready var docking_station: CameraDockingStation = %CameraDockingStation
 
 var size := 512
 

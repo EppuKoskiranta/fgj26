@@ -3,19 +3,32 @@ class_name GameManager
 
 var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 
+@onready var customer_logic: Customer = %CustomerLogic
+
 var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
+@export var game_map : GameMap = null
 
 func _ready() -> void:
 	assert(player_camera)
+	assert(game_map)
 	set_process(false)
 	set_physics_process(false)
 	Def.subscribe_to_menu_toggle(self._menu_toggle)
 	Def.subscribe_to_going_back(self._back_from_station)
 	Def.subscribe_to_input_mapping_changed(self._input_mapping_changed)
 	Def.subscribe_to_interaction(self._interacted_with)
-	# TODO: only when we start from main menu
+	Def.set_input_mapping(Def.INPUT_MAPPING_START)
+	
+	customer_logic.spawn_location = game_map.spawn_point
+	customer_logic.front_desk_location = game_map.front_desk
+	customer_logic.bed_location = game_map.bed_side
+	customer_logic.on_bed_location = game_map.bed_top
+	customer_logic.player_camera = player_camera
+	
+func start_game() -> void:
 	Def.set_input_mapping(Def.INPUT_MAPPING_FPS_MOVEMENT)
+	customer_logic.move_state()
 	
 func _back_from_station() -> void:
 	Def.set_input_mapping(Def.INPUT_MAPPING_FPS_MOVEMENT)
@@ -43,3 +56,10 @@ func _interacted_with(object : Node) -> void:
 		var lotionStation = object as FaceLotionApply
 		Def.set_input_mapping(Def.GameInputState.MASK_LOTION_APPLY)
 		player_camera.attach_to(lotionStation.get_docking_station())
+	elif object is Customer:
+		# TODO: only open the dialog here, and only move to next state if
+		# the player can ask no more questions
+		customer_logic.move_state()
+
+func _on_customer_logic_arrived_to_location() -> void:
+	customer_logic.move_state()

@@ -58,6 +58,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		match Def.game_input_state:
 			Def.INPUT_MAPPING_CONVERSATION, Def.INPUT_MAPPING_LOTION_MIXING, Def.INPUT_MAPPING_MASK_LOTION_APPLY:
 				Def.go_back()
+				
+	elif event.is_action_released("ui_accept"):
+		Def.debug()
 		
 	if not is_test:
 		get_tree().root.set_input_as_handled()
