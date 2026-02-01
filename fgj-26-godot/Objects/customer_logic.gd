@@ -3,7 +3,7 @@ class_name Customer
 
 signal arrived_to_location
 
-@onready var speed : float = 10.0
+@onready var speed : float = 2.5
 
 enum State {
 	REUSABLE = 0,
