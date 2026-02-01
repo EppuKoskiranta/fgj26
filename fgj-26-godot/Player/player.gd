@@ -11,11 +11,14 @@ var turn_speed_deg_per_sec: float = 0.0
 var look_speed_deg_per_sec: float = 0.0
 var look_angle_deg: float = 0.0
 
+var lotion_object : LotionObject
+
 var item_in_hand : Ingredient = null
 
 func _ready() -> void:
 	Def.subscribe_to_movement(self._move_player, self._turn_player, self._look_up_down)
 	Def.subscribe_to_interaction(self.try_pick_up, Def.SUB_INTERACT_EVENT_ONLY)
+	Def.subscribe_to_interaction(self.try_to_get_lotion, Def.SUB_INTERACT_EVENT_ONLY)
 	Def.subscribe_to_pick_up(self._on_item_picked_up)
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +55,20 @@ func _turn_player(new_turn_speed_deg_per_sec: float) -> void:
 	
 func _look_up_down(pitch_angle_deg_per_sec: float) -> void:
 	look_speed_deg_per_sec = pitch_angle_deg_per_sec
+
+func try_to_get_lotion() -> void:
+	if lotion_object != null:
+		return
+	
+	var ray_result: Dictionary = shoot_ray_from_camera(3.0)
+	if ray_result and ray_result.collider is CollisionObject3D:
+		var parent : Node = ray_result.collider.get_parent()
+		if parent.is_in_group("lotion"):
+			print("Picked up: %s" % parent)
+			lotion_object = parent as LotionObject
+			lotion_object.transform = Transform3D.IDENTITY
+			lotion_object.get_parent().remove_child(lotion_object)
+			$Hand.add_child(lotion_object)
 
 func try_pick_up() -> void:
 	if item_in_hand != null:

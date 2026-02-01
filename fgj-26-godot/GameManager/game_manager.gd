@@ -37,6 +37,9 @@ func _back_from_station() -> void:
 	Def.set_input_mapping(Def.INPUT_MAPPING_FPS_MOVEMENT)
 	player_camera.detach_from_viewpoint()
 	
+func get_camera() -> PlayerCamera:
+	return player_camera
+	
 func _menu_toggle() -> void:
 	match Def.game_input_state:
 		Def.INPUT_MAPPING_START:

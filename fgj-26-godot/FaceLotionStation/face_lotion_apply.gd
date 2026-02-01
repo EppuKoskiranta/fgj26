@@ -1,21 +1,31 @@
 class_name FaceLotionApply
 extends Node
 
+#var lotion_scene = preload("res://LotionObject/lotion_object_scene.tscn")
 
 @export var face_lotion_shader : ShaderMaterial
 @export var face_image : CompressedTexture2D
 @export var max_lotion_in_hand = 10.0
+<<<<<<< Updated upstream
 @export var lotion_color : Color
 @onready var docking_station: CameraDockingStation = %CameraDockingStation
+=======
+@export var docking_station : CameraDockingStation
+@export var game_manager : GameManager
+@export var lotion_pos : Node3D
+
+@onready var lotion_table := $Table as MeshInstance3D
+>>>>>>> Stashed changes
 
 var size := 512
 
 var lotion_in_hand : float = 0
-var lotion_amount : float = 0
 var coverage_img: Image
 var lotion_img : Image
 var targetUv = Image
+var mesh_rid : RID
 
+var lotion_object : LotionObject
 
 var coverage_texture: ImageTexture
 var height_texture: ImageTexture
@@ -23,12 +33,21 @@ var face_texture : ImageTexture
 var lotion_texture : ImageTexture
 
 func _ready() -> void:
+	
+	#HOW to use
+	#var instance = lotion_scene.instantiate()
+	#var effects := LotionEffects.new()
+	#var color := Color.DARK_GREEN
+	#var amount := 100.0
+	#add_child(instance)
+	#var lotion = (instance as LotionObject)
+	#lotion.initialize(effects, amount, color)
+	#lotion.global_position = lotion_pos.global_position
+	#HOW to use end
+	assert(game_manager)
 	# Create images
 	coverage_img = Image.create(size, size, false, Image.FORMAT_RGBA8)
 	lotion_img   = Image.create(size, size, false, Image.FORMAT_RGBA8)
-	
-
-	lotion_img.fill(lotion_color)
 
 	# Create textures from images
 	coverage_texture = ImageTexture.create_from_image(coverage_img)
@@ -42,9 +61,16 @@ func _ready() -> void:
 	face_lotion_shader.set_shader_parameter("lotion_tex", lotion_texture)
 	
 	Def.subscribe_to_lotion_application(_application)
+	Def.subscribe_to_interaction(_table_interaction)
+
+	#DEBUG
+	#var lotion : LotionObject = LotionObject.new(1, 1, 1 ,1, 1)
+	#add_lotion(lotion)
+	#add_lotion_to_hand()
 	
-func _application() -> void:
+func _application(delta_time : float) -> void:
 	print("Spread that shit all over")
+	handle_station_input(game_manager.get_camera(), delta_time)
 
 func get_docking_station() -> CameraDockingStation:
 	return docking_station
@@ -58,9 +84,22 @@ func getRatio() -> float:
 func set_target(image : Image):
 	targetUv = image
 
-func add_lotion(amount : float, color : Color):
-	lotion_amount = amount
-	lotion_color = color
+func _table_interaction(object : Node):
+	if object == lotion_table:
+		var player = Def.get_player() as Player
+		if player.lotion_object == null:
+			print("Player doesn't have lotion")
+			return
+		add_lotion(player.lotion_object)
+		player.lotion_object = null
+
+func add_lotion(lotion_object : LotionObject):
+	print("Adding lotion to the lotionStation")
+	self.lotion_object = lotion_object
+	lotion_object.get_parent().remove_child(lotion_object)
+	lotion_table.add_child(lotion_object)
+	lotion_img.fill(lotion_object.color)
+	lotion_object.global_position = lotion_pos.global_position
 	
 func _calculateRatio() -> float:
 	var total : int = 0
@@ -88,13 +127,7 @@ func uv_to_pixel(uv : Vector2) -> Vector2i:
 func add_lotion_to_hand():
 	#potential amount to add
 	var lotion_to_add = max_lotion_in_hand - lotion_in_hand
-	if lotion_to_add > lotion_amount:
-		lotion_in_hand += lotion_amount
-		lotion_amount = 0
-		return
-		
-	lotion_in_hand += lotion_to_add
-	lotion_amount -= lotion_to_add
+	lotion_in_hand = lotion_object.get_lotion(lotion_to_add)
 
 func apply_lotion(uv : Vector2, radius_px: int, strength : float, delta_time : float) -> void:
 	if lotion_in_hand > 0:
@@ -138,3 +171,32 @@ func _apply_lotion(pixel: Vector2i, radius_px: int, strength := 1.0) -> void:
 
 	# 🔑 Push changes to GPU
 	coverage_texture.update(coverage_img)
+	
+func handle_station_input(camera : Camera3D, delta_time : float) -> void:
+	if lotion_object:
+		var hit = raycast_from_mouse(camera)
+		if hit and hit.collider is FaceUVProvider:
+			var face := hit.collider as FaceUVProvider
+			if mesh_rid != hit.rid:
+				set_target(face.build_face_uv_mask(512))
+				mesh_rid = hit.rid
+			var uv := face.world_to_uv(hit.position)
+			apply_lotion(uv, 10, 1, delta_time)
+		if hit and hit.collider.get_parent() is LotionObject:
+			add_lotion_to_hand()
+	else:
+		print("NO LOTION")
+	
+
+func raycast_from_mouse(camera : Camera3D) -> Dictionary:
+	var mouse_pos := get_viewport().get_mouse_position()
+	var ray_origin := camera.project_ray_origin(mouse_pos)
+	var ray_direction := camera.project_ray_normal(mouse_pos)
+	var ray_end := ray_origin + ray_direction * 100
+	var query := PhysicsRayQueryParameters3D.create(
+		ray_origin,
+		ray_end
+	)
+	query.collide_with_areas = true
+	var result := camera.get_world_3d().direct_space_state.intersect_ray(query)
+	return result

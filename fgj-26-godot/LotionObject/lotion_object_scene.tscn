@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dqath7au2ktic"]
+
+[ext_resource type="ArrayMesh" uid="uid://dhuo00bo55gy6" path="res://mixing_bowl_full.res" id="1_k1rx8"]
+[ext_resource type="Script" uid="uid://ccsuffespcn1m" path="res://LotionObject/lotion_object.gd" id="2_5lvos"]
+[ext_resource type="ArrayMesh" uid="uid://c5gg44318wjm5" path="res://Assets/Meshes/mixing_bowl_half.res" id="3_g5k4n"]
+[ext_resource type="ArrayMesh" uid="uid://bvjclvg72q0cp" path="res://Assets/Meshes/mixing_bowl.tres" id="4_dfcou"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mofub"]
+size = Vector3(0.41992188, 0.20037842, 0.42193604)
+
+[node name="LotionObject" type="MeshInstance3D" unique_id=1072493321 groups=["lotion"]]
+mesh = ExtResource("1_k1rx8")
+script = ExtResource("2_5lvos")
+full_bowl = ExtResource("1_k1rx8")
+half_bowl = ExtResource("3_g5k4n")
+empty_bowl = ExtResource("4_dfcou")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=946320294]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1415662875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0034484863, 0.0010681152)
+shape = SubResource("BoxShape3D_mofub")
