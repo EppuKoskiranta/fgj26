@@ -139,6 +139,8 @@ func get_text() -> String:
 	match self.nr_of_asks_left:
 		2:
 			customer_say = _get_casual_answer()
+			var music_text : Array[String] = ["calming", "good", "jazzy", "hit", "absolute banger of a"]
+			customer_say += "\nSome %s music would be nice too." % music_text.pick_random()
 		1:
 			customer_say = _get_straight_answer()
 		_:
