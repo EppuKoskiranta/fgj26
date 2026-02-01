@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bpbdhbtgcho4o"]
 
 [ext_resource type="Script" uid="uid://cg311qf0ugxdu" path="res://GameManager/game_manager.gd" id="1_5dfvm"]
+[ext_resource type="PackedScene" uid="uid://cd1asr7x8yv00" path="res://Objects/customer_logic.tscn" id="2_rt1ce"]
 
 [node name="GameManager" type="Node" unique_id=38479966]
 script = ExtResource("1_5dfvm")
+
+[node name="CustomerLogic" parent="." unique_id=1030538246 instance=ExtResource("2_rt1ce")]
+unique_name_in_owner = true
+
+[connection signal="arrived_to_location" from="CustomerLogic" to="." method="_on_customer_logic_arrived_to_location"]

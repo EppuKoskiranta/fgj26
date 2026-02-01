@@ -1,17 +1,16 @@
 [gd_scene format=3 uid="uid://c5kbiim4lphdj"]
 
 [ext_resource type="Script" uid="uid://de3e2jlrmoons" path="res://main.gd" id="1_pq8q7"]
+[ext_resource type="PackedScene" uid="uid://bqpx333wdum5y" path="res://UI/start_menu.tscn" id="2_eji0w"]
 [ext_resource type="PackedScene" uid="uid://56psdcopd18u" path="res://Map/placeholder_map.tscn" id="2_pyidc"]
-[ext_resource type="PackedScene" path="res://Map/face_mask_applying_station.tscn" id="3_bf3um"]
-[ext_resource type="PackedScene" uid="uid://cxxf12838sxbw" path="res://Objects/lotion_pot.tscn" id="3_tw3kd"]
 [ext_resource type="PackedScene" uid="uid://ss4v7nnfm6kn" path="res://Player/player.tscn" id="3_vvh5c"]
 [ext_resource type="PackedScene" uid="uid://b8xwqp7fvux3q" path="res://InputHandling/input_handler.tscn" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://ypdhxtcki8n7" path="res://Camera/PlayerCamera.tscn" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bpbdhbtgcho4o" path="res://GameManager/game_manager.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://b6srbcargtiaf" path="res://UI/interact_promt.tscn" id="7_vyht1"]
 [ext_resource type="PackedScene" uid="uid://drrkr0a4mdg7q" path="res://Objects/ingredient.tscn" id="8_huihk"]
-[ext_resource type="Script" uid="uid://bgejhntlqykmj" path="res://Objects/ingredient_data.gd" id="9_tw3kd"]
-[ext_resource type="Script" uid="uid://d0htnj28qjnd4" path="res://Common/lotion_effects.gd" id="11_qw60f"]
+[ext_resource type="Script" uid="uid://cfnnyp670ocsh" path="res://Objects/ingredient_data.gd" id="9_tw3kd"]
+[ext_resource type="Script" uid="uid://cmxui65afvxed" path="res://Common/lotion_effects.gd" id="11_qw60f"]
 
 [sub_resource type="Resource" id="Resource_eji0w"]
 script = ExtResource("11_qw60f")
@@ -37,6 +36,9 @@ metadata/_custom_type_script = "uid://bgejhntlqykmj"
 [node name="Root" type="Node" unique_id=174035270]
 script = ExtResource("1_pq8q7")
 
+[node name="StartMenu" parent="." unique_id=1240488457 instance=ExtResource("2_eji0w")]
+visible = false
+
 [node name="Player" parent="." unique_id=2142164832 instance=ExtResource("3_vvh5c")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0066845417, 0)
@@ -45,25 +47,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0066845417, 0)
 
 [node name="PlaceholderMap" parent="Map" unique_id=2001261800 instance=ExtResource("2_pyidc")]
 
-[node name="LotionPot" parent="Map" unique_id=693602640 instance=ExtResource("3_tw3kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1737347, 0.66181433, 1.5094626)
-
-[node name="FaceMaskApplyingStation" parent="Map" unique_id=1983648637 instance=ExtResource("3_bf3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4744797, 0, 0)
-
 [node name="InputHandler" parent="." unique_id=874846861 instance=ExtResource("4_jnlp7")]
 unique_name_in_owner = true
 
 [node name="PlayerCamera" parent="." unique_id=1558064987 instance=ExtResource("5_l8v81")]
 unique_name_in_owner = true
 
-[node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera") instance=ExtResource("6_l8v81")]
+[node name="GameManager" parent="." unique_id=38479966 node_paths=PackedStringArray("player_camera", "game_map") instance=ExtResource("6_l8v81")]
 player_camera = NodePath("../PlayerCamera")
+game_map = NodePath("../Map/PlaceholderMap")
+
+[node name="CustomerLogic" parent="GameManager" index="0" unique_id=1030538246]
+transform = Transform3D(-0.999822, 0, -0.018865809, 0, 1, 0, 0.018865809, 0, -0.999822, 6.7174234, 0, 8.530996)
 
 [node name="InteractPromt" parent="." unique_id=1773362808 instance=ExtResource("7_vyht1")]
 
 [node name="Ingredient" parent="." unique_id=1309186205 instance=ExtResource("8_huihk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1538268, 4.018273)
 ingredient_data = SubResource("Resource_qw60f")
+
+[connection signal="quit_game" from="StartMenu" to="." method="_on_start_menu_quit_game"]
+[connection signal="start_game" from="StartMenu" to="." method="_on_start_menu_start_game"]
 
 [editable path="GameManager"]

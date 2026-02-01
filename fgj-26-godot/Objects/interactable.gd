@@ -25,3 +25,6 @@ func _on_body_exited(_body: Node3D) -> void:
 func _interaction() -> void:
 	if false == self.get_overlapping_bodies().is_empty():
 		Def.report_interact(self.get_parent())
+		
+func enable(is_enabled : bool) -> void:
+	collision_shape_3d.disabled = !is_enabled
