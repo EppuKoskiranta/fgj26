@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c6hma2np5sfqw"]
+
+[ext_resource type="Script" uid="uid://8wh0tse2003a" path="res://UI/dialogue_with_customer.gd" id="1_7e7h4"]
+[ext_resource type="Material" uid="uid://c0ahati7qw452" path="res://UI/menu background_shaderl.tres" id="2_rdvmx"]
+[ext_resource type="LabelSettings" uid="uid://b1by0bcotvxc0" path="res://UI/ui_label_settings.tres" id="3_mk3fj"]
+
+[node name="DialogueWithCustomer" type="Control" unique_id=16143200]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7e7h4")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1974853417]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1079712899]
+material = ExtResource("2_rdvmx")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1787169982]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CustomerText" type="Label" parent="MarginContainer/MarginContainer" unique_id=1523196131]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+text = "TBA"
+label_settings = ExtResource("3_mk3fj")
+horizontal_alignment = 1

@@ -5,6 +5,7 @@ var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 
 @onready var customer_logic: Customer = %CustomerLogic
 @onready var pause_menu: Control = %PauseMenu
+@onready var dialogue_with_customer: DialogueWindow = %DialogueWithCustomer
 
 var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
@@ -22,6 +23,7 @@ func _ready() -> void:
 	Def.set_input_mapping(Def.INPUT_MAPPING_START)
 	
 	pause_menu.hide()
+	dialogue_with_customer.hide()
 	
 	customer_logic.spawn_location = game_map.spawn_point
 	customer_logic.front_desk_location = game_map.front_desk
@@ -54,20 +56,27 @@ func _menu_toggle() -> void:
 			get_tree().paused = true
 			pause_menu.show()
 		
-func _input_mapping_changed(_new_state : Def.GameInputState, prev_state : Def.GameInputState) -> void:
+func _input_mapping_changed(new_state : Def.GameInputState, prev_state : Def.GameInputState) -> void:
 	self.previous_input_state = prev_state
+	print( Def.GameInputState.keys()[new_state])
+	if Def.INPUT_MAPPING_CONVERSATION == new_state:
+		var customer_said : String = customer_logic.get_text()
+		print(customer_said)
+		dialogue_with_customer.set_customer_text(customer_said)
+		dialogue_with_customer.show()
+	else:
+		dialogue_with_customer.hide()
 	
 func _interacted_with(object : Node) -> void:
 	# TODO: change input mapping based on what we interacted with
 	print("Interacted with ", object.name)
 	if object is FaceLotionApply:
 		var lotionStation = object as FaceLotionApply
-		Def.set_input_mapping(Def.GameInputState.MASK_LOTION_APPLY)
+		Def.set_input_mapping(Def.INPUT_MAPPING_MASK_LOTION_APPLY)
 		player_camera.attach_to(lotionStation.get_docking_station())
 	elif object is Customer:
-		# TODO: only open the dialog here, and only move to next state if
-		# the player can ask no more questions
-		customer_logic.move_state()
+		Def.set_input_mapping(Def.INPUT_MAPPING_CONVERSATION)
+		
 
 func _on_customer_logic_arrived_to_location() -> void:
 	customer_logic.move_state()

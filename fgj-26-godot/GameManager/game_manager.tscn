@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://t6o72vvht3b7" path="res://Assets/Textures/ButtonNormal.png" id="5_bgl21"]
 [ext_resource type="Texture2D" uid="uid://nyak7o17vq0x" path="res://Assets/Textures/ButtonPressed.png" id="6_32bk0"]
 [ext_resource type="LabelSettings" uid="uid://dwbckyy8lusco" path="res://UI/button_label_settings.tres" id="7_34q73"]
+[ext_resource type="PackedScene" uid="uid://c6hma2np5sfqw" path="res://UI/dialogue_with_customer.tscn" id="8_i0lca"]
 
 [node name="GameManager" type="Node" unique_id=38479966]
 script = ExtResource("1_5dfvm")
@@ -87,6 +88,9 @@ text = "Quit"
 label_settings = ExtResource("7_34q73")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DialogueWithCustomer" parent="." unique_id=16143200 instance=ExtResource("8_i0lca")]
+unique_name_in_owner = true
 
 [connection signal="arrived_to_location" from="CustomerLogic" to="." method="_on_customer_logic_arrived_to_location"]
 [connection signal="quit_game" from="PauseMenu" to="." method="_on_pause_menu_quit_game"]
