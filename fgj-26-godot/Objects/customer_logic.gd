@@ -153,8 +153,8 @@ func _get_casual_answer() -> String:
 		1:
 			var preference : String = preferences.find_key(4)
 			var adjective : String = adjectives[preference]
-			possible_answers.push_back("Could you provide an intense %s treatment please? My skin is %s" % [preference, adjective])
-			possible_answers.push_back("Hello there! I need some searious %s! Just look at my face..." % preference)
+			possible_answers.push_back("Could you provide an intense %s treatment please?\nMy skin is %s." % [preference, adjective])
+			possible_answers.push_back("Hello there!\nI need some serious %s!\nJust look at my face..." % preference)
 		2:
 			var str_format : Array[String] = []
 			for key in preferences.keys():
@@ -162,8 +162,8 @@ func _get_casual_answer() -> String:
 					str_format.push_back(key)
 					str_format.push_back(preference_rate[preferences[key]])
 					str_format.push_back(adjectives[key])
-			possible_answers.push_back("Good day!\nAm I in the right place for a %s %s and %s %s?" % [str_format[1], str_format[0], str_format[4], str_format[3]])
-			possible_answers.push_back("Please help!\nMy skin is %s and %s.\nI need a %s %s and perhaps %s %s" % [str_format[2], str_format[5], str_format[1], str_format[0], str_format[4], str_format[3]])
+			possible_answers.push_back("Good day!\nAm I in the right place for a %s %s\nand %s %s?" % [str_format[1], str_format[0], str_format[4], str_format[3]])
+			possible_answers.push_back("Please help!\nMy skin is %s and %s.\nI need a %s %s\nand perhaps %s %s." % [str_format[2], str_format[5], str_format[1], str_format[0], str_format[4], str_format[3]])
 		_:
 			var str_format : Array[String] = []
 			for key in preferences.keys():
@@ -171,7 +171,7 @@ func _get_casual_answer() -> String:
 					str_format.push_back(key)
 					str_format.push_back(preference_rate[preferences[key]])
 					str_format.push_back(adjectives[key])
-			possible_answers.push_back("Hi there!\nAm I in the right place for %s %s,\n%s %s and %s %s?" % [str_format[1], str_format[0], str_format[4], str_format[3], str_format[7], str_format[6]])
+			possible_answers.push_back("Hi there!\nAm I in the right place for %s %s,\n%s %s\nand %s %s?" % [str_format[1], str_format[0], str_format[4], str_format[3], str_format[7], str_format[6]])
 	return possible_answers.pick_random()
 
 func _get_straight_answer() -> String:
@@ -180,7 +180,7 @@ func _get_straight_answer() -> String:
 		1:
 			var preference : String = preferences.find_key(4)
 			var adjective : String = adjectives[preference]
-			possible_answers.push_back("Like I said, extreme %s" % preference)
+			possible_answers.push_back("Like I said, extreme %s." % preference)
 		2:
 			var str_format : Array[String] = []
 			for key in preferences.keys():
@@ -189,7 +189,7 @@ func _get_straight_answer() -> String:
 					str_format.push_back(preference_rate[preferences[key]])
 					str_format.push_back(adjectives[key])
 			possible_answers.push_back("I need %s and %s.\nCan you make it quick?" % [str_format[0], str_format[3]])
-			possible_answers.push_back("Like I said,\n%s %s and %s %s" % [str_format[1], str_format[0], str_format[4], str_format[3]])
+			possible_answers.push_back("Like I said,\n%s %s\nand %s %s." % [str_format[1], str_format[0], str_format[4], str_format[3]])
 		_:
 			var str_format : Array[String] = []
 			for key in preferences.keys():
@@ -197,6 +197,6 @@ func _get_straight_answer() -> String:
 					str_format.push_back(key)
 					str_format.push_back(preference_rate[preferences[key]])
 					str_format.push_back(adjectives[key])
-			possible_answers.push_back("So, %s, %s and %s %s please" % [str_format[0], str_format[3], str_format[7], str_format[6]])
+			possible_answers.push_back("So, %s, %s \nand %s %s please!" % [str_format[0], str_format[3], str_format[7], str_format[6]])
 	print(preferences, possible_answers)
 	return possible_answers.pick_random()
