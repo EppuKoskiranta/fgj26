@@ -169,6 +169,13 @@ size = Vector3(25, 7, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hwbv"]
 size = Vector3(32.975, 7, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hwbv"]
+albedo_color = Color(1, 0.52156866, 0.52156866, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lqxhj"]
+material = SubResource("StandardMaterial3D_4hwbv")
+size = Vector3(0.2, 0.2, 0.2)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcnmp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -376,6 +383,7 @@ shape = SubResource("BoxShape3D_4hwbv")
 transform = Transform3D(0.16063926, 0, 0.98701316, 0, 1, 0, -0.98701316, 0, 0.16063926, 11.193, 3.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D4" unique_id=959658793]
+transform = Transform3D(1.5930263, 0, 0, 0, 1, 0, 0, 0, 0.90348315, 0, 0, 0)
 mesh = SubResource("BoxMesh_lqxhj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D4" unique_id=1808396279]
@@ -408,6 +416,10 @@ spot_range = 9.54
 spot_attenuation = 0.61
 spot_angle_attenuation = 0.7578596
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Lights/SpotLight3D" unique_id=22268340]
+transform = Transform3D(0.9999999, -1.8626451e-08, 2.0489097e-08, -5.2154064e-08, 0.9999997, 1.4901161e-08, -6.053597e-08, -2.9802322e-08, 0.99999976, 0.014960289, -0.14894629, 0.054118156)
+mesh = SubResource("PrismMesh_lqxhj")
+
 [node name="SpotLight3D2" type="SpotLight3D" parent="MapElements/Room/Lights" unique_id=819821326]
 transform = Transform3D(0.9454218, 0.19683796, -0.2596775, 0.021745108, 0.7570373, 0.6530099, 0.32512265, -0.6230166, 0.7114394, 3.1364722, 5.747689, 5.6423645)
 light_color = Color(0.9047478, 0.37205693, 0.4062181, 1)
@@ -418,6 +430,10 @@ light_specular = 2.209
 spot_range = 9.54
 spot_attenuation = 0.61
 spot_angle_attenuation = 0.7578596
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Lights/SpotLight3D2" unique_id=559741732]
+transform = Transform3D(1, -1.4901161e-08, 4.4703484e-08, -5.9604645e-08, 0.9999999, 0, -4.4703484e-08, -2.9802322e-08, 1, 0.04276657, -0.018977165, 0.17504978)
+mesh = SubResource("PrismMesh_lqxhj")
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="MapElements/Room/Lights" unique_id=1829332151]
 transform = Transform3D(1, 0, 0, 0, 0.4519366, 0.8920501, 0, -0.8920501, 0.4519366, -7.3428435, 6.7462425, 5.5013127)
@@ -430,6 +446,22 @@ shadow_enabled = true
 spot_range = 9.54
 spot_attenuation = 0.61
 spot_angle_attenuation = 0.7578596
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Lights/SpotLight3D3" unique_id=477064039]
+transform = Transform3D(1, -1.4901161e-08, 4.4703484e-08, -5.960465e-08, 0.9999999, 0, -4.4703494e-08, -2.9802322e-08, 1, 0.04276657, -0.44531608, -0.10508156)
+mesh = SubResource("PrismMesh_lqxhj")
+
+[node name="Node3D5" type="Node3D" parent="MapElements/Room" unique_id=1975156431]
+transform = Transform3D(0.16723344, 0, 0.98591727, 0, 1, 0, -0.98591727, 0, 0.16723344, 1.2316294, 2.5646486, 23.25544)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Room/Node3D5" unique_id=1164491932]
+transform = Transform3D(1.5930263, 0, 0, 0, 1, 0, 0, 0, 0.90348315, 0, 0.80191517, 0)
+mesh = SubResource("BoxMesh_lqxhj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapElements/Room/Node3D5" unique_id=135574823]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Room/Node3D5/StaticBody3D" unique_id=926223548]
+shape = SubResource("BoxShape3D_4hwbv")
 
 [node name="Environment" type="Node" parent="." unique_id=1827130198]
 

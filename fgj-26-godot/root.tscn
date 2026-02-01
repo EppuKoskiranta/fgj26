@@ -15,7 +15,6 @@
 script = ExtResource("1_pq8q7")
 
 [node name="StartMenu" parent="." unique_id=1240488457 instance=ExtResource("2_eji0w")]
-visible = false
 
 [node name="Player" parent="." unique_id=2142164832 instance=ExtResource("3_vvh5c")]
 unique_name_in_owner = true

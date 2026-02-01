@@ -78,5 +78,39 @@ label_settings = ExtResource("4_j3hi8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1077524573]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_right = 529.0
+offset_bottom = 368.0
+grow_horizontal = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=714302249]
+material = ExtResource("1_dl586")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2" unique_id=722523312]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer" unique_id=978843123]
+layout_mode = 2
+text = "Ask the customer what they want.
+Concoct a lotion from the ingredients.
+Apply the lotion on the customer."
+label_settings = ExtResource("4_j3hi8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_button_down"]
 [connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_down"]

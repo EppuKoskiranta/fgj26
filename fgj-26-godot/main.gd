@@ -7,7 +7,7 @@ extends Node
 
 func _ready() -> void:
 	player_camera.init(player.fps_view)
-	_on_start_menu_start_game() # TODO: Remove this and make menu visible
+	#_on_start_menu_start_game() # TODO: Remove this and make menu visible
 
 func _process(_delta: float) -> void:
 	pass

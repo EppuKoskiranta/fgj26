@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Def="*uid://c7vij1woyghhv"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [global_group]
 
 navigation_mesh_source_group=""
