@@ -32,4 +32,3 @@ dimesions = Vector3(1, 1, 3)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=275522526]
 unique_name_in_owner = true
-debug_enabled = true
