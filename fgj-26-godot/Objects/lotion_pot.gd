@@ -36,6 +36,9 @@ func _interaction(object: Node) -> void:
 	if object == self:
 		print("Lotion Pot interacted with")
 
+		# notify
+		Def.announce_mix_start()
+
 		# Get the ingredient in player's hand
 		var player = Def.get_player() as Player
 

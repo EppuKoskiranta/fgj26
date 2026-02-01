@@ -60,7 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Def.go_back()
 				
 	elif event.is_action_released("ui_accept"):
-		Def.debug()
+		pass #Def.debug()
 		
 	if not is_test:
 		get_tree().root.set_input_as_handled()

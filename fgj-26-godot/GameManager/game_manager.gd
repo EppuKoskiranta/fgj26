@@ -22,6 +22,7 @@ func _ready() -> void:
 	Def.subscribe_to_going_back(self._back_from_station)
 	Def.subscribe_to_input_mapping_changed(self._input_mapping_changed)
 	Def.subscribe_to_interaction(self._interacted_with)
+	Def.subscribe_to_mix_start(self._mix_started)
 	Def.set_input_mapping(Def.INPUT_MAPPING_START)
 	
 	pause_menu.hide()
@@ -69,6 +70,10 @@ func _input_mapping_changed(new_state : Def.GameInputState, prev_state : Def.Gam
 	else:
 		dialogue_with_customer.hide()
 	
+	if Def.INPUT_MAPPING_MASK_LOTION_APPLY == prev_state \ 
+		and Customer.State.LOTIONABLE == customer_logic.state:
+		customer_logic.move_state()
+	
 func _interacted_with(object : Node) -> void:
 	# TODO: change input mapping based on what we interacted with
 	print("Interacted with ", object.name)
@@ -79,6 +84,9 @@ func _interacted_with(object : Node) -> void:
 	elif object is Customer:
 		Def.set_input_mapping(Def.INPUT_MAPPING_CONVERSATION)
 		
+func _mix_started() -> void:
+	if Customer.State.INTERACTABLE == customer_logic.state:
+		customer_logic.move_state()
 
 func _on_customer_logic_arrived_to_location() -> void:
 	var state = customer_logic.move_state()

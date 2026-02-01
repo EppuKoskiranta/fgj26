@@ -13,6 +13,7 @@ signal menu_toggled()
 signal back_to_previous()
 signal squirt()
 signal debug_it()
+signal mix_start()
 
 
 # Add global enums here
@@ -76,6 +77,9 @@ func subscribe_to_lotion_application(callback : Callable) -> void:
 func subscribe_to_debug(callback : Callable) -> void:
 	debug_it.connect(callback)
 
+func subscribe_to_mix_start(callback : Callable) -> void:
+	mix_start.connect(callback)
+
 func set_input_mapping(new_mapping : GameInputState) -> void:
 	var previous : GameInputState = game_input_state
 	game_input_state = new_mapping
@@ -127,3 +131,6 @@ func get_lotion_station() -> Node:
 	
 func debug() -> void:
 	emit_signal("debug_it")
+
+func announce_mix_start() -> void:
+	emit_signal("mix_start")
