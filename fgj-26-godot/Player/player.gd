@@ -97,7 +97,8 @@ func _on_item_picked_up(object : Node) -> void:
 	print("Player received item: ", object.name)
 	# instanciate an item to the player's hand.
 	var item_instance := object.duplicate() as Node3D
-	item_instance.transform = Transform3D.IDENTITY
+	item_instance.position = Vector3.ZERO
+	item_instance.rotation = Vector3.ZERO
 	item_in_hand = item_instance
 
 	$Hand.add_child(item_in_hand)

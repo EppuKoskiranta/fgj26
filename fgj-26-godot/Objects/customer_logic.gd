@@ -9,11 +9,10 @@ enum State {
 	REUSABLE = 0,
 	GO_TO_COUNTER = 1,
 	INTERACTABLE = 2,
-	WAITING = 3,
-	GOING_TO_BED = 4,
-	LOTIONABLE = 5,
-	LEAVE = 6,
-	MAX_NR_OF_STATES = 7
+	GOING_TO_BED = 3,
+	LOTIONABLE = 4,
+	LEAVE = 5,
+	MAX_NR_OF_STATES = 6
 }
 var spawn_location : Node3D = null
 var front_desk_location : Node3D = null
@@ -50,7 +49,6 @@ func move_state() -> void:
 			set_interactability(true)
 		State.INTERACTABLE:
 			set_interactability(false)
-		State.WAITING:
 			navigation_agent_3d.set_target_position(bed_location.global_position)
 		State.GOING_TO_BED:
 			self.global_transform = on_bed_location.global_transform
@@ -79,7 +77,7 @@ func _physics_process(delta: float) -> void:
 			if velocity.length() > 0.01:
 				self.look_at(self.global_position-velocity, Vector3.UP)
 			target_distance = direction.length()
-		State.WAITING, State.INTERACTABLE:
+		State.INTERACTABLE:
 			var direction : Vector3 = player_camera.global_position - self.global_position
 			self.look_at(self.global_position-(direction * Vector3(1.0, 0.0, 1.0)), Vector3.UP)
 			velocity = Vector3.ZERO
