@@ -58,7 +58,7 @@ dimesions = Vector3(1.5, 1, 2.5)
 
 [node name="CameraDockingStation" type="Node3D" parent="." unique_id=672156104]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.2299385, 2.967655, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.2299385, 4.268652, 0)
 script = ExtResource("1_qqo6s")
 metadata/_custom_type_script = "uid://dgo3bs6jwayqf"
 

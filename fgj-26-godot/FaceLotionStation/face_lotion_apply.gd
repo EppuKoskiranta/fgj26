@@ -1,7 +1,7 @@
 class_name FaceLotionApply
 extends Node
 
-#var lotion_scene = preload("res://LotionObject/lotion_object_scene.tscn")
+var lotion_scene = preload("res://LotionObject/lotion_object_scene.tscn")
 
 @export var face_lotion_shader : ShaderMaterial
 @export var face_image : CompressedTexture2D
@@ -9,9 +9,10 @@ extends Node
 @export var lotion_color : Color
 @onready var docking_station: CameraDockingStation = %CameraDockingStation
 @export var game_manager : GameManager
-@export var lotion_pos : Node3D
+@onready var lotion_pos : Node3D = $Table/LotionPosition
 
 @onready var lotion_table := $Table as MeshInstance3D
+
 
 var size := 512
 
@@ -31,14 +32,14 @@ var lotion_texture : ImageTexture
 func _ready() -> void:
 	
 	#HOW to use
-	#var instance = lotion_scene.instantiate()
-	#var effects := LotionEffects.new()
-	#var color := Color.DARK_GREEN
-	#var amount := 100.0
-	#add_child(instance)
-	#var lotion = (instance as LotionObject)
-	#lotion.initialize(effects, amount, color)
-	#lotion.global_position = lotion_pos.global_position
+	var instance = lotion_scene.instantiate()
+	var effects := LotionEffects.new()
+	var color := Color.DARK_GREEN
+	var amount := 100.0
+	add_child(instance)
+	var lotion = (instance as LotionObject)
+	lotion.initialize(effects, amount, color)
+	lotion.global_position = lotion_pos.global_position
 	#HOW to use end
 	#assert(game_manager)
 	# Create images

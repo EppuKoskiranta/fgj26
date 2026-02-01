@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if lotion_application:
-		emit_signal("squirt")
+		emit_signal("squirt", _delta)
 	
 func subscribe_to_movement(move_callback : Callable, turn_callback : Callable, look_callback: Callable) -> void:
 	move_player.connect(move_callback)
