@@ -1,7 +1,7 @@
 class_name FaceLotionApply
 extends Node
 
-var lotion_scene = preload("res://LotionObject/lotion_object_scene.tscn")
+#var lotion_scene = preload("res://LotionObject/lotion_object_scene.tscn")
 
 @export var face_lotion_shader : ShaderMaterial
 @export var face_image : CompressedTexture2D
@@ -32,14 +32,14 @@ var lotion_texture : ImageTexture
 func _ready() -> void:
 	
 	#HOW to use
-	#   var instance = lotion_scene.instantiate()
-	#   var effects := LotionEffects.new()
-	#   var color := Color.DARK_GREEN
-	#   var amount := 100.0
-	#   add_child(instance)
-	#   var lotion = (instance as LotionObject)
-	#   lotion.initialize(effects, amount, color)
-	#   lotion.global_position = lotion_pos.global_position
+	#var instance = lotion_scene.instantiate()
+	#var effects := LotionEffects.new()
+	#var color := Color.DARK_GREEN
+	#var amount := 100.0
+	#add_child(instance)
+	#var lotion = (instance as LotionObject)
+	#lotion.initialize(effects, amount, color)
+	#lotion.global_position = lotion_pos.global_position
 	#HOW to use end
 	#assert(game_manager)
 	# Create images
@@ -73,11 +73,17 @@ func _application(delta_time : float) -> void:
 func get_docking_station() -> CameraDockingStation:
 	return docking_station
 
-func getRatio() -> float:
+func get_covered_ratio() -> float:
 	if targetUv:
 		return _calculateRatio()
 	else:
 		return 0.0
+		
+func get_location_ratio() -> Array:
+	if lotion_object:
+		return lotion_object.lotion_effects.get_ratio()
+	
+	return [0.0,0.0,0.0,0.0,0.0]
 	
 func set_target(image : Image):
 	targetUv = image
@@ -103,13 +109,14 @@ func add_lotion(lotion_object : LotionObject):
 func _calculateRatio() -> float:
 	var total : int = 0
 	var covered : int = 0
-	for x in range(size):
-		for y in range(size):	
-			#check if targetUV.r value is set
-			if targetUv.get_pixel(x, y).r > 0:
-				total += 1
-				if coverage_img.get_pixel(x, y).r > 0:
-					covered += 1
+	if targetUv is Image and targetUv != null:
+		for x in range(size):
+			for y in range(size):	
+				#check if targetUV.r value is set
+				if targetUv.get_pixel(x, y).r > 0:
+					total += 1
+					if coverage_img.get_pixel(x, y).r > 0:
+						covered += 1
 	if total == 0:
 		return 0.0
 	return float(covered) / float(total)

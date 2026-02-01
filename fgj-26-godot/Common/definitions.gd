@@ -121,6 +121,9 @@ func get_player() -> Node:
 
 func get_game_manager() -> Node:
 	return get_tree().get_root().get_node("Root/GameManager")	
+
+func get_lotion_station() -> Node:
+	return get_tree().get_root().get_node("Root/Map/PlaceholderMap/MapElements/FaceMaskApplyingStation")	
 	
 func debug() -> void:
 	emit_signal("debug_it")

@@ -78,7 +78,7 @@ func get_preferences() -> Array[float]:
 		retval.push_back(float(value) / 4.0)
 	return retval
 
-func move_state() -> void:
+func move_state() -> State:
 	match state:
 		State.REUSABLE:
 			self.show()
@@ -101,6 +101,7 @@ func move_state() -> void:
 		
 	state = (state + 1) % State.MAX_NR_OF_STATES as State
 	print(State.keys()[state])
+	return state
 	
 func _physics_process(delta: float) -> void:
 	

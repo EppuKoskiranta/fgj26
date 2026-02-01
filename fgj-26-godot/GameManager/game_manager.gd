@@ -6,6 +6,7 @@ var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 @onready var customer_logic: Customer = %CustomerLogic
 @onready var pause_menu: Control = %PauseMenu
 @onready var dialogue_with_customer: DialogueWindow = %DialogueWithCustomer
+@onready var score_system : ScoreSystem = $ScoreSystem
 
 var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
@@ -79,7 +80,18 @@ func _interacted_with(object : Node) -> void:
 		
 
 func _on_customer_logic_arrived_to_location() -> void:
-	customer_logic.move_state()
+	var state = customer_logic.move_state()
+	if (state == Customer.State.REUSABLE):
+		_get_score()
+
+func _get_score():
+	#score_system.get_score()
+	var lotion_station = Def.get_lotion_station() as FaceLotionApply
+	var placeholder_customer_ratios = [0.0, 0.0, 0.5, 0.25, 0.25]
+	var lotion_ratios = lotion_station.get_location_ratio()
+	var covered_ratio = lotion_station.get_covered_ratio()
+	var scoreString = score_system.get_score(placeholder_customer_ratios, lotion_ratios, covered_ratio)
+	print("Score: ", scoreString)
 
 func _on_pause_menu_resume_game() -> void:
 	Def.toggle_menu()
