@@ -101,10 +101,11 @@ func _revert_hide_customer_and_replace_with_fake():
 func _get_score():
 	#score_system.get_score()
 	var lotion_station = Def.get_lotion_station() as FaceLotionApply
-	var placeholder_customer_ratios = [0.0, 0.0, 0.5, 0.25, 0.25]
+	#var placeholder_customer_ratios = [0.0, 0.0, 0.5, 0.25, 0.25]
+	var customer_ratios = customer_logic.get_preferences()
 	var lotion_ratios = lotion_station.get_location_ratio()
 	var covered_ratio = lotion_station.get_covered_ratio()
-	var scoreString = score_system.get_score(placeholder_customer_ratios, lotion_ratios, covered_ratio)
+	var scoreString = score_system.get_score(customer_ratios, lotion_ratios, covered_ratio)
 	print("Score: ", scoreString)
 
 func _on_pause_menu_resume_game() -> void:
