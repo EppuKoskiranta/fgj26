@@ -29,14 +29,14 @@ var preferences : Dictionary[String, int] = {
 	"hydration" : 0,
 	"cleansing" : 0,
 	"anti_aging" : 0,
-	"soothing and calming" : 0,
+	"soothing_and_calming" : 0,
 	"brightening" : 0
 }
 var adjectives : Dictionary[String, String] = {
 	"hydration" : "dry",
 	"cleansing" : "dirty",
 	"anti_aging" : "old",
-	"soothing_calming" : "irritated",
+	"soothing_and_calming" : "irritated",
 	"brightening" : "dull"
 }
 var preference_rate : Array[String] = [" ", "little", "some", "decent", "lot of" ]
@@ -53,7 +53,7 @@ func _ready() -> void:
 	generate_preferences()
 	
 func generate_preferences() -> void:
-	var nr_of_important_properties = (randi() % 3) + 1
+	nr_of_important_properties = (randi() % 3) + 1
 	var randomized_categories : Array[String] = preferences.keys().duplicate()
 	randomized_categories.shuffle()
 	var random_values : Array[int] = [4]
