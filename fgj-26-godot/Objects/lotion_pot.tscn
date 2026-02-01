@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="1_nu0hk"]
 [ext_resource type="ArrayMesh" uid="uid://bvjclvg72q0cp" path="res://Assets/Meshes/mixing_bowl.tres" id="2_wil2y"]
 
-[node name="LotionPot" type="Node3D" unique_id=693602640]
+[node name="LotionPot" type="Node3D" unique_id=693602640 groups=["lotion_pot"]]
 script = ExtResource("1_2k0ha")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=271322341]
