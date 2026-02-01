@@ -47,6 +47,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0066845417, 0)
 
 [node name="PlaceholderMap" parent="Map" unique_id=2001261800 instance=ExtResource("2_pyidc")]
 
+[node name="FaceMaskApplyingStation" parent="Map/PlaceholderMap/MapElements" parent_id_path=PackedInt32Array(2001261800, 702561825) index="3" unique_id=1983648637 node_paths=PackedStringArray("game_manager", "lotion_pos")]
+game_manager = NodePath("../../../../GameManager")
+lotion_pos = NodePath("Table/LotionPosition")
+
 [node name="InputHandler" parent="." unique_id=874846861 instance=ExtResource("4_jnlp7")]
 unique_name_in_owner = true
 
@@ -69,4 +73,7 @@ ingredient_data = SubResource("Resource_qw60f")
 [connection signal="quit_game" from="StartMenu" to="." method="_on_start_menu_quit_game"]
 [connection signal="start_game" from="StartMenu" to="." method="_on_start_menu_start_game"]
 
+[editable path="Map/PlaceholderMap"]
+[editable path="Map/PlaceholderMap/MapElements/FaceMaskApplyingStation"]
+[editable path="Map/PlaceholderMap/MapElements/FaceMaskApplyingStation/Interactable"]
 [editable path="GameManager"]
