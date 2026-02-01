@@ -13,7 +13,7 @@ var look_angle_deg: float = 0.0
 
 var lotion_object : LotionObject
 
-var item_in_hand : Ingredient = null
+var item_in_hand : Node3D = null
 
 func _ready() -> void:
 	Def.subscribe_to_movement(self._move_player, self._turn_player, self._look_up_down)
@@ -64,11 +64,13 @@ func try_to_get_lotion() -> void:
 	if ray_result and ray_result.collider is CollisionObject3D:
 		var parent : Node = ray_result.collider.get_parent()
 		if parent.is_in_group("lotion"):
-			print("Picked up: %s" % parent)
+			print("Picked up lotion? %s" % parent)
 			lotion_object = parent as LotionObject
-			lotion_object.transform = Transform3D.IDENTITY
-			lotion_object.get_parent().remove_child(lotion_object)
-			$Hand.add_child(lotion_object)
+			if lotion_object.lotion_ready():
+				lotion_object.position = Vector3.ZERO
+				lotion_object.rotation = Vector3.ZERO
+				lotion_object.get_parent().remove_child(lotion_object)
+				$Hand.add_child(lotion_object)
 
 func try_pick_up() -> void:
 	if item_in_hand != null:
@@ -103,7 +105,7 @@ func _on_item_picked_up(object : Node) -> void:
 
 	$Hand.add_child(item_in_hand)
 
-func get_item_in_hand() -> Ingredient:
+func get_item_in_hand() -> Node3D:
 	return item_in_hand
 
 func remove_item_in_hand() -> void:
