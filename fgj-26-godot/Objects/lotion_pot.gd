@@ -42,11 +42,7 @@ func _interaction(object: Node) -> void:
 		var item_from_player = player.get_item_in_hand()
 		if item_from_player == null:
 			print("Player is not holding any item.")
-			# handle lotion object creation
-			var lotion_scn_instance = self.get_lotion_object_scene()
-			player.lotion_object = lotion_scn_instance as LotionObject
-			get_parent().add_child(lotion_scn_instance)
-			queue_free()
+			# handle lotion object creation in player.gd::try_to_get_lotion()
 			return
 
 		if item_from_player is Ingredient:
@@ -87,10 +83,10 @@ func reset_lotion_pot() -> void:
 	current_ingredient_count = 0
 	print("Lotion Pot has been reset.")
 
-func is_ready() -> bool:
+func lotion_ready() -> bool:
 	return current_ingredient_count > 0
 
-func get_lotion_object_scene() -> Node3D:
+func instantiate_lotion_object_scene() -> Node3D:
 	var instance = lotion_scene.instantiate()
 	var lotion_object = (instance as LotionObject)
 	lotion_object.initialize(current_lotion_effects, 100.0, Color.GREEN)

@@ -22,6 +22,7 @@ Def="*uid://c7vij1woyghhv"
 [global_group]
 
 navigation_mesh_source_group=""
+lotion_pot=""
 
 [input]
 
