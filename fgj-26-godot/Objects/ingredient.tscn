@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://drrkr0a4mdg7q"]
 
-[ext_resource type="Script" uid="uid://c2l7c0ksqaetj" path="res://Objects/ingredient.gd" id="1_4yxfs"]
-[ext_resource type="Script" uid="uid://bgejhntlqykmj" path="res://Objects/ingredient_data.gd" id="2_pk51n"]
+[ext_resource type="Script" uid="uid://c7c6bpugj4thw" path="res://Objects/ingredient.gd" id="1_4yxfs"]
+[ext_resource type="Script" uid="uid://cfnnyp670ocsh" path="res://Objects/ingredient_data.gd" id="2_pk51n"]
 
 [sub_resource type="Resource" id="Resource_8ono6"]
 script = ExtResource("2_pk51n")
-metadata/_custom_type_script = "uid://bgejhntlqykmj"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_huihk"]
 
