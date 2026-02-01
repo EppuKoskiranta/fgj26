@@ -1,32 +1,46 @@
 [gd_scene format=3 uid="uid://ckmh1vyiuyelh"]
 
 [ext_resource type="Script" uid="uid://cs4j72dwvgss6" path="res://Radio/radio.gd" id="1_s1lw3"]
+[ext_resource type="ArrayMesh" uid="uid://okumcfg1a4jl" path="res://Assets/Meshes/radio.tres" id="2_ejb3a"]
 [ext_resource type="PackedScene" uid="uid://k3hnb7x7te6o" path="res://Objects/interactable.tscn" id="2_wtk5h"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_m5b23"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5b23"]
-albedo_color = Color(1, 0.4745098, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wtk5h"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejb3a"]
+albedo_color = Color(0.67058825, 0.45490196, 0.45490196, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x7r3n"]
+material = SubResource("StandardMaterial3D_ejb3a")
+height = 0.5
 
 [node name="Radio" type="StaticBody3D" unique_id=871936263]
 collision_mask = 3
 script = ExtResource("1_s1lw3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812068123]
-mesh = SubResource("BoxMesh_m5b23")
-surface_material_override/0 = SubResource("StandardMaterial3D_m5b23")
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.84878755, 0)
+mesh = ExtResource("2_ejb3a")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=920632872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76237035, 0)
 attenuation_model = 2
 autoplay = true
 panning_strength = 2.43
 
 [node name="Interactable" parent="." unique_id=1441599236 instance=ExtResource("2_wtk5h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76237035, 0)
 dimesions = Vector3(5, 5, 5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=502917959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025292754, 0.86986494, 0)
 shape = SubResource("BoxShape3D_wtk5h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=96445730]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=166594572]
+shape = SubResource("BoxShape3D_wtk5h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2144774329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25042465, 0)
+mesh = SubResource("CylinderMesh_x7r3n")
