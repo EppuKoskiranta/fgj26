@@ -4,7 +4,7 @@ class_name Radio
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 func _ready() -> void:
-	audio_player.play()
+	next_station()
 	set_process(false)
 	set_physics_process(false)
 	Def.subscribe_to_interaction(self._interaction)

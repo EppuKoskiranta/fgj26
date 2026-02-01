@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://t6o72vvht3b7" path="res://Assets/Textures/ButtonNormal.png" id="2_f14c5"]
 [ext_resource type="Texture2D" uid="uid://nyak7o17vq0x" path="res://Assets/Textures/ButtonPressed.png" id="3_j3hi8"]
 [ext_resource type="LabelSettings" uid="uid://dwbckyy8lusco" path="res://UI/button_label_settings.tres" id="4_j3hi8"]
+[ext_resource type="LabelSettings" uid="uid://b1by0bcotvxc0" path="res://UI/ui_label_settings.tres" id="6_rcgl7"]
 
 [node name="StartMenu" type="Control" unique_id=1240488457]
 layout_mode = 3
@@ -108,7 +109,7 @@ layout_mode = 2
 text = "Ask the customer what they want.
 Concoct a lotion from the ingredients.
 Apply the lotion on the customer."
-label_settings = ExtResource("4_j3hi8")
+label_settings = ExtResource("6_rcgl7")
 horizontal_alignment = 1
 vertical_alignment = 1
 

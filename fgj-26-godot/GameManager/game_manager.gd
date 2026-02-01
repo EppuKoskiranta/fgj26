@@ -97,6 +97,9 @@ func _on_customer_logic_arrived_to_location() -> void:
 	if (state == Customer.State.REUSABLE):
 		result_display.hide()
 		customer_logic.move_state()
+		var lotion_station = Def.get_lotion_station() as FaceLotionApply
+		if lotion_station:
+			lotion_station.reset()
 	
 	if state == Customer.State.LOTIONABLE:
 		_hide_customer_and_replace_with_fake()

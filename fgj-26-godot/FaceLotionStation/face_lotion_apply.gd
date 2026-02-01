@@ -208,3 +208,12 @@ func raycast_from_mouse(camera : Camera3D) -> Dictionary:
 	query.collide_with_areas = true
 	var result := camera.get_world_3d().direct_space_state.intersect_ray(query)
 	return result
+
+func reset() -> void:
+	coverage_img.fill(Color(0, 0, 0, 0))
+	coverage_texture.update(coverage_img)
+	lotion_in_hand = 0.0
+	if lotion_object:
+		lotion_object.queue_free()
+		lotion_object = null
+	mesh_rid = RID()
