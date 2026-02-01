@@ -118,6 +118,9 @@ func stop_spreading_lotion() -> void:
 
 func get_player() -> Node:
 	return get_tree().get_root().get_node("Root/Player")
+
+func get_game_manager() -> Node:
+	return get_tree().get_root().get_node("Root/GameManager")	
 	
 func debug() -> void:
 	emit_signal("debug_it")

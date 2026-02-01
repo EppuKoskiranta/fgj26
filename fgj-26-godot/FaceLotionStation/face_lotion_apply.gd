@@ -40,8 +40,9 @@ func _ready() -> void:
 	#lotion.initialize(effects, amount, color)
 	#lotion.global_position = lotion_pos.global_position
 	#HOW to use end
-	assert(game_manager)
+	#assert(game_manager)
 	# Create images
+	game_manager = Def.get_game_manager() as GameManager
 	coverage_img = Image.create(size, size, false, Image.FORMAT_RGBA8)
 	lotion_img   = Image.create(size, size, false, Image.FORMAT_RGBA8)
 
