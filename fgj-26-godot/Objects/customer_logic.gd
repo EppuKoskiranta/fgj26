@@ -25,14 +25,21 @@ var player_camera : Node3D = null
 @onready var navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 
 var state : State = State.REUSABLE
+var nr_of_asks_left : int = MAX_NR_OF_QUESTIONS
 
 const MIN_DISTANCE_M : float = 0.8
 const COLLISION_MASK : int = 7
+const MAX_NR_OF_QUESTIONS : int = 2
 
 func _ready() -> void:
 	self.show()
 	set_interactability(false)
 	Def.subscribe_to_debug(self.move_state)
+	generate_preferences()
+	
+func generate_preferences() -> void:
+	# TODO: randomize internal variables of customer expectations
+	nr_of_asks_left = MAX_NR_OF_QUESTIONS
 
 func move_state() -> void:
 	match state:
@@ -54,6 +61,7 @@ func move_state() -> void:
 			navigation_agent_3d.set_target_position(spawn_location.global_position)
 		_:
 			self.hide()
+			generate_preferences()
 		
 	state = (state + 1) % State.MAX_NR_OF_STATES as State
 	print(State.keys()[state])
@@ -87,3 +95,15 @@ func _physics_process(delta: float) -> void:
 	
 func set_interactability(is_interactable : bool) -> void:
 	interactable.enable(is_interactable)
+	
+func get_text() -> String:
+	self.nr_of_asks_left -= 1
+	# TODO: Gnerate test based on customer expectations
+	match self.nr_of_asks_left:
+		1:
+			return "TODO: Polite answer"
+		0:
+			return "TODO: Straight answer"
+		_:
+			self.nr_of_asks_left = max(self.nr_of_asks_left, -1)
+			return "I already told you everything you need to know."
