@@ -35,6 +35,11 @@ func _ready() -> void:
 	self.show()
 	set_interactability(false)
 	Def.subscribe_to_debug(self.move_state)
+	generate_preferences()
+	
+func generate_preferences() -> void:
+	# TODO: randomize internal variables of customer expectations
+	nr_of_asks_left = MAX_NR_OF_QUESTIONS
 
 func move_state() -> void:
 	match state:
@@ -56,7 +61,7 @@ func move_state() -> void:
 			navigation_agent_3d.set_target_position(spawn_location.global_position)
 		_:
 			self.hide()
-			nr_of_asks_left = MAX_NR_OF_QUESTIONS
+			generate_preferences()
 		
 	state = (state + 1) % State.MAX_NR_OF_STATES as State
 	print(State.keys()[state])
@@ -93,6 +98,7 @@ func set_interactability(is_interactable : bool) -> void:
 	
 func get_text() -> String:
 	self.nr_of_asks_left -= 1
+	# TODO: Gnerate test based on customer expectations
 	match self.nr_of_asks_left:
 		1:
 			return "TODO: Polite answer"
@@ -101,5 +107,3 @@ func get_text() -> String:
 		_:
 			self.nr_of_asks_left = max(self.nr_of_asks_left, -1)
 			return "I already told you everything you need to know."
-	
-	print(self.nr_of_asks_left)
