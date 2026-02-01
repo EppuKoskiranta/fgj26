@@ -67,7 +67,7 @@ func _ready() -> void:
 	#add_lotion_to_hand()
 	
 func _application(delta_time : float) -> void:
-	print("Spread that shit all over")
+	#print("Spread that shit all over")
 	handle_station_input(game_manager.get_camera(), delta_time)
 
 func get_docking_station() -> CameraDockingStation:
@@ -104,6 +104,7 @@ func add_lotion(lotion_object : LotionObject):
 	lotion_table.add_child(lotion_object)
 	lotion_img.fill(lotion_object.color)
 	lotion_object.global_position = lotion_pos.global_position
+	lotion_object.print_lotion_info()
 	
 func _calculateRatio() -> float:
 	var total : int = 0
@@ -130,7 +131,8 @@ func uv_to_pixel(uv : Vector2) -> Vector2i:
 
 func add_lotion_to_hand():
 	#potential amount to add
-	var lotion_to_add = max_lotion_in_hand - lotion_in_hand
+	var lotion_to_add = max(max_lotion_in_hand - lotion_in_hand, 0)
+	print("Lotion to add: ", lotion_to_add)
 	lotion_in_hand = lotion_object.get_lotion(lotion_to_add)
 
 func apply_lotion(uv : Vector2, radius_px: int, strength : float, delta_time : float) -> void:
