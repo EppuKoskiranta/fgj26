@@ -19,24 +19,11 @@ var mouse_button_names: Dictionary[MouseButton, String] = {
 var nr_of_interactables : int = 0
 
 func _ready() -> void:
+	set_process(true)
 	set_physics_process(false)
 	Def.subscribe_to_interactable(_show_promt)
-	_set_label()
+	Def.subscribe_to_input_mapping_changed(self._input_mapping_changed)
 	self.hide()
-
-func _process(_delta: float) -> void:
-	_set_label()
-
-func _set_label() -> void:
-	var promt_str : String = "Interact ["
-	for event in InputMap.action_get_events("interact"):
-		if event is InputEventKey:
-			promt_str += OS.get_keycode_string(event.physical_keycode) + "/"
-		elif event is InputEventMouseButton:
-			promt_str += mouse_button_names[event.button_index] + "/"
-	promt_str = promt_str.left(- 1)
-	promt_str += "]"
-	promt_label.text = promt_str
 
 func _show_promt(object : Node) -> void:
 	nr_of_interactables += 1 if null != object else -1
@@ -44,3 +31,16 @@ func _show_promt(object : Node) -> void:
 		self.show()
 	else:
 		self.hide()
+	
+func _input_mapping_changed(new_state : Def.GameInputState, _previous_state : Def.GameInputState) -> void:
+	match new_state:
+		Def.INPUT_MAPPING_START:
+			promt_label.text = ""
+		Def.INPUT_MAPPING_MENU:
+			promt_label.text = ""
+		Def.INPUT_MAPPING_FPS_MOVEMENT:
+			promt_label.text = "Interact [E/LMB]"
+		Def.INPUT_MAPPING_CONVERSATION, Def.INPUT_MAPPING_LOTION_MIXING, Def.INPUT_MAPPING_MASK_LOTION_APPLY:
+			promt_label.text = "Back [RMB]"
+		
+		

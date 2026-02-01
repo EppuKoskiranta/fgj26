@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cg311qf0ugxdu" path="res://GameManager/game_manager.gd" id="1_5dfvm"]
 [ext_resource type="PackedScene" uid="uid://cd1asr7x8yv00" path="res://Objects/customer_logic.tscn" id="2_rt1ce"]
+[ext_resource type="Script" uid="uid://fna3fggofhb4" path="res://UI/start_menu.gd" id="3_y47yw"]
+[ext_resource type="Material" uid="uid://c0ahati7qw452" path="res://UI/menu background_shaderl.tres" id="4_i0lca"]
+[ext_resource type="Texture2D" uid="uid://t6o72vvht3b7" path="res://Assets/Textures/ButtonNormal.png" id="5_bgl21"]
+[ext_resource type="Texture2D" uid="uid://nyak7o17vq0x" path="res://Assets/Textures/ButtonPressed.png" id="6_32bk0"]
+[ext_resource type="LabelSettings" uid="uid://dwbckyy8lusco" path="res://UI/button_label_settings.tres" id="7_34q73"]
 
 [node name="GameManager" type="Node" unique_id=38479966]
 script = ExtResource("1_5dfvm")
@@ -9,4 +14,82 @@ script = ExtResource("1_5dfvm")
 [node name="CustomerLogic" parent="." unique_id=1030538246 instance=ExtResource("2_rt1ce")]
 unique_name_in_owner = true
 
+[node name="PauseMenu" type="Control" parent="." unique_id=1240488457]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_y47yw")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu" unique_id=167529793]
+process_mode = 3
+layout_mode = 1
+offset_right = 304.0
+offset_bottom = 368.0
+mouse_filter = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarginContainer" unique_id=681862807]
+material = ExtResource("4_i0lca")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/MarginContainer" unique_id=1093619445]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer/MarginContainer" unique_id=1879532435]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 32
+
+[node name="StartGame" type="TextureButton" parent="PauseMenu/MarginContainer/MarginContainer/VBoxContainer" unique_id=558859468]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_bgl21")
+texture_pressed = ExtResource("6_32bk0")
+texture_hover = ExtResource("5_bgl21")
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/MarginContainer/VBoxContainer/StartGame" unique_id=1968744401]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+label_settings = ExtResource("7_34q73")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="PauseMenu/MarginContainer/MarginContainer/VBoxContainer" unique_id=21509738]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_bgl21")
+texture_pressed = ExtResource("6_32bk0")
+texture_hover = ExtResource("5_bgl21")
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/MarginContainer/VBoxContainer/Quit" unique_id=1966617738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+label_settings = ExtResource("7_34q73")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="arrived_to_location" from="CustomerLogic" to="." method="_on_customer_logic_arrived_to_location"]
+[connection signal="quit_game" from="PauseMenu" to="." method="_on_pause_menu_quit_game"]
+[connection signal="start_game" from="PauseMenu" to="." method="_on_pause_menu_resume_game"]
+[connection signal="button_down" from="PauseMenu/MarginContainer/MarginContainer/VBoxContainer/StartGame" to="PauseMenu" method="_on_start_game_button_down"]
+[connection signal="button_down" from="PauseMenu/MarginContainer/MarginContainer/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_button_down"]

@@ -4,6 +4,7 @@ class_name GameManager
 var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 
 @onready var customer_logic: Customer = %CustomerLogic
+@onready var pause_menu: Control = %PauseMenu
 
 var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
@@ -19,6 +20,8 @@ func _ready() -> void:
 	Def.subscribe_to_input_mapping_changed(self._input_mapping_changed)
 	Def.subscribe_to_interaction(self._interacted_with)
 	Def.set_input_mapping(Def.INPUT_MAPPING_START)
+	
+	pause_menu.hide()
 	
 	customer_logic.spawn_location = game_map.spawn_point
 	customer_logic.front_desk_location = game_map.front_desk
@@ -42,9 +45,11 @@ func _menu_toggle() -> void:
 			Def.set_input_mapping(previous_input_state)
 			get_tree().paused = false
 			Def.stop_player()
+			pause_menu.hide()
 		_:
 			Def.set_input_mapping(Def.INPUT_MAPPING_MENU)
 			get_tree().paused = true
+			pause_menu.show()
 		
 func _input_mapping_changed(_new_state : Def.GameInputState, prev_state : Def.GameInputState) -> void:
 	self.previous_input_state = prev_state
@@ -63,3 +68,12 @@ func _interacted_with(object : Node) -> void:
 
 func _on_customer_logic_arrived_to_location() -> void:
 	customer_logic.move_state()
+
+func _on_pause_menu_resume_game() -> void:
+	Def.toggle_menu()
+	
+func _on_pause_menu_quit_game() -> void:
+	if is_inside_tree():
+		get_tree().paused = true
+	if is_inside_tree():
+		get_tree().quit()
