@@ -7,6 +7,7 @@ var previous_input_state : Def.GameInputState = Def.INPUT_MAPPING_START
 @onready var pause_menu: Control = %PauseMenu
 @onready var dialogue_with_customer: DialogueWindow = %DialogueWithCustomer
 @onready var score_system : ScoreSystem = $ScoreSystem
+@onready var fake_customer : Node3D = $fake_customer
 
 var ingredient_in_player_hand : Ingredient = null
 @export var player_camera : PlayerCamera
@@ -83,6 +84,19 @@ func _on_customer_logic_arrived_to_location() -> void:
 	var state = customer_logic.move_state()
 	if (state == Customer.State.REUSABLE):
 		_get_score()
+	
+	if state == Customer.State.LOTIONABLE:
+		_hide_customer_and_replace_with_fake()
+	else:
+		_revert_hide_customer_and_replace_with_fake()
+
+func _hide_customer_and_replace_with_fake():
+	customer_logic.visible = false
+	fake_customer.visible = true
+
+func _revert_hide_customer_and_replace_with_fake():
+	customer_logic.visible = true
+	fake_customer.visible = false
 
 func _get_score():
 	#score_system.get_score()

@@ -409,7 +409,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9026747, 0.13429904, 1.938
 
 [node name="BedTop" type="Node3D" parent="NavigationRegion3D" unique_id=1999682115]
 unique_name_in_owner = true
-transform = Transform3D(1, 1.718667e-07, -2.262668e-08, -2.262668e-08, 0.25881904, 0.9659258, 1.718667e-07, -0.9659258, 0.25881904, -6.0805807, 1.3882558, 1.1194372)
+transform = Transform3D(1, 1.718667e-07, -2.262668e-08, -2.262668e-08, 0.25881904, 0.9659258, 1.718667e-07, -0.9659258, 0.25881904, -6.0805807, -3.8097146, 1.1194372)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=86485131 groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11212969, 0)

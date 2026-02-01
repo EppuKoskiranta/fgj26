@@ -132,8 +132,9 @@ func uv_to_pixel(uv : Vector2) -> Vector2i:
 
 func add_lotion_to_hand():
 	#potential amount to add
+	if lotion_in_hand > 9.5:
+		return
 	var lotion_to_add = max(max_lotion_in_hand - lotion_in_hand, 0)
-	print("Lotion to add: ", lotion_to_add)
 	lotion_in_hand = lotion_object.get_lotion(lotion_to_add)
 
 func apply_lotion(uv : Vector2, radius_px: int, strength : float, delta_time : float) -> void:
