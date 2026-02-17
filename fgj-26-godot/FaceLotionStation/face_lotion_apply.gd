@@ -183,18 +183,37 @@ func _apply_lotion(pixel: Vector2i, radius_px: int, strength := 1.0) -> void:
 func handle_station_input(camera : Camera3D, delta_time : float) -> void:
 	if lotion_object:
 		var hit = raycast_from_mouse(camera)
-		if hit and hit.collider is FaceUVProvider:
-			var face := hit.collider as FaceUVProvider
+		if hit and hit.collider.get_parent() is MeshUVProvider:
+			var face := hit.collider.get_parent() as MeshUVProvider
 			if mesh_rid != hit.rid:
 				set_target(face.build_face_uv_mask(512))
 				mesh_rid = hit.rid
-			var uv := face.world_to_uv(hit.position)
-			apply_lotion(uv, 10, 1, delta_time)
+			var uv = _get_uv(hit)
+			apply_lotion(uv, 30, 1, delta_time)
 		if hit and hit.collider.get_parent() is LotionObject:
 			add_lotion_to_hand()
 	else:
 		print("NO LOTION")
 	
+func _get_uv(result : Dictionary) -> Vector2:
+	var body = result.collider as StaticBody3D
+	var data = body.get_meta("collision_data")
+	var tri_index : int = result.face_index
+	var tri_uvs : PackedVector2Array = data.uvs[tri_index]
+	
+	var i : int = tri_index * 3
+
+	var v0 : Vector3 = data.vertices[i]
+	var v1 : Vector3= data.vertices[i + 1]
+	var v2 : Vector3 = data.vertices[i + 2]
+
+	var local_hit := body.to_local(result.position)
+	
+	var bary : Vector3 = Geometry3D.get_triangle_barycentric_coords(local_hit, v0, v1, v2)
+	
+	var hit_uv := tri_uvs[0] * bary.x + tri_uvs[1] * bary.y + tri_uvs[2] * bary.z
+	
+	return hit_uv
 
 func raycast_from_mouse(camera : Camera3D) -> Dictionary:
 	var mouse_pos := get_viewport().get_mouse_position()
