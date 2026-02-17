@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ckmh1vyiuyelh" path="res://Radio/radio.tscn" id="2_luqmu"]
 [ext_resource type="PackedScene" uid="uid://bv6b7owa885y2" path="res://Map/face_mask_applying_station.tscn" id="3_tcnmp"]
 [ext_resource type="PackedScene" uid="uid://drrkr0a4mdg7q" path="res://Objects/ingredient.tscn" id="4_t7glo"]
+[ext_resource type="Resource" uid="uid://xugwk5gf7f1v" path="res://Assets/GameData/IngredientData/aloe_vera.tres" id="5_4hwbv"]
 [ext_resource type="Script" uid="uid://cmxui65afvxed" path="res://Common/lotion_effects.gd" id="5_vb6nc"]
 [ext_resource type="Script" uid="uid://cfnnyp670ocsh" path="res://Objects/ingredient_data.gd" id="6_6j0f0"]
-[ext_resource type="ArrayMesh" uid="uid://b6qhv0yion815" path="res://Assets/Meshes/aloe.tres" id="6_vb6nc"]
 [ext_resource type="ArrayMesh" uid="uid://bcsst0jyo6pkx" path="res://Assets/Meshes/honey.tres" id="8_6j0f0"]
 [ext_resource type="ArrayMesh" uid="uid://dbpk7570j7pfc" path="res://Assets/Meshes/yogurt.tres" id="9_f5tyt"]
 [ext_resource type="ArrayMesh" uid="uid://chb5qgx5g76cu" path="res://Assets/Meshes/avocado.tres" id="10_qa7xj"]
@@ -37,18 +37,6 @@ albedo_color = Color(0.08627451, 0.21960784, 0.10980392, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_tcnmp"]
 material = SubResource("StandardMaterial3D_vb6nc")
 size = Vector3(0.745, 1.18, 2.855)
-
-[sub_resource type="Resource" id="Resource_t7glo"]
-script = ExtResource("5_vb6nc")
-hydration = 3
-soothing_calming = 2
-brightening = 1
-
-[sub_resource type="Resource" id="Resource_vb6nc"]
-script = ExtResource("6_6j0f0")
-lotion_effects = SubResource("Resource_t7glo")
-name = "Aloe Vera"
-mesh = ExtResource("6_vb6nc")
 
 [sub_resource type="Resource" id="Resource_6j0f0"]
 script = ExtResource("5_vb6nc")
@@ -256,7 +244,7 @@ mesh = SubResource("BoxMesh_tcnmp")
 
 [node name="Ingredient_aloe" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=1309186205 instance=ExtResource("4_t7glo")]
 transform = Transform3D(-2.4041263e-08, 0, -0.55, 0, 0.55, 0, 0.55, 0, -2.4041263e-08, -5.0041763e-08, 0.64708006, -1.1448231)
-ingredient_data = SubResource("Resource_vb6nc")
+ingredient_data = ExtResource("5_4hwbv")
 
 [node name="Ingredient_honey" parent="MapElements/MixingRoom/IngredientShelf/IngredientContainer" unique_id=2013721640 instance=ExtResource("4_t7glo")]
 transform = Transform3D(7.212379e-08, 0, 0.55, 0, 0.55, 0, -0.55, 0, 7.212379e-08, 0.028079964, 0.64636314, -0.5256176)

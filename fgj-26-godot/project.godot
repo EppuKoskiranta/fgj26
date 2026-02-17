@@ -28,6 +28,7 @@ window/size/viewport_height=1080
 
 navigation_mesh_source_group=""
 lotion_pot=""
+ingredient="used for detecting when the player looks at an ingredient"
 
 [input]
 

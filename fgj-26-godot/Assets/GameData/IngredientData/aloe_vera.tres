@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="IngredientData" format=3 uid="uid://xugwk5gf7f1v"]
+
+[ext_resource type="Script" uid="uid://cmxui65afvxed" path="res://Common/lotion_effects.gd" id="1_ojju8"]
+[ext_resource type="ArrayMesh" uid="uid://b6qhv0yion815" path="res://Assets/Meshes/aloe.tres" id="2_ln70o"]
+[ext_resource type="Script" uid="uid://cfnnyp670ocsh" path="res://Objects/ingredient_data.gd" id="3_0867d"]
+
+[sub_resource type="Resource" id="Resource_t7glo"]
+script = ExtResource("1_ojju8")
+hydration = 3
+soothing_calming = 2
+brightening = 1
+
+[resource]
+script = ExtResource("3_0867d")
+lotion_effects = SubResource("Resource_t7glo")
+name = "Aloe Vera"
+mesh = ExtResource("2_ln70o")

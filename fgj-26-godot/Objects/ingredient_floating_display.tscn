@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://besopbqdofof5"]
+
+[ext_resource type="Script" uid="uid://c8i43cvod1qgj" path="res://Objects/ingredient_floating_display.gd" id="1_t6j7g"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_30tyr"]
+
+[node name="IngredientFloatingDisplay" type="Node3D" unique_id=163305656]
+script = ExtResource("1_t6j7g")
+
+[node name="DisplayMeshContainer" type="Node3D" parent="." unique_id=2080536040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=1449227748]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=472583933]
+libraries/ = SubResource("AnimationLibrary_30tyr")
